@@ -27,3 +27,4 @@ jobs:
       with:
         name: flux-generated-images
         path: output/
+ 
