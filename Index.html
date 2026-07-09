@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -298,192 +297,78 @@ html
             letter-spacing: 1px;
         }
 
+        /* NEW ADDITION: PAGE 4 - EDITORIALS & REVIEWS HUB */
+        .reviews-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 992px) {
+            .reviews-layout { grid-template-columns: 1fr; }
+        }
+
+        .editorial-stream, .user-reviews-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hub-card {
+            background-color: var(--bg-card);
+            padding: 2rem;
+            border-radius: 6px;
+            border: 1px solid #232d3d;
+        }
+
+        .hub-card .meta {
+            font-size: 0.85rem;
+            color: var(--accent-orange);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .hub-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .hub-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .star-rating {
+            color: var(--accent-orange);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .reviewer-name {
+            font-weight: 700;
+            color: var(--text-light);
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .verified-badge {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--accent-orange);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
         /* Footer System */
         footer {
             text-align: center;
             padding: 4rem 1rem;
             margin-top: 6rem;
             border-top: 1px solid #232d3d;
+            background-color: #080c12;
             color: var(--text-muted);
-            font-size: 0.9rem;
-            background-color: #070a10;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Main Navigation Bar -->
-    <header>
-        <div class="nav-container">
-            <div class="logo">Rest<span>Ink Signs</span></div>
-            <nav>
-                <ul>
-                    <li><a onclick="switchPage('home')" id="nav-home" class="active">Home Studio</a></li>
-                    <li><a onclick="switchPage('services')" id="nav-services">Services & About</a></li>
-                    <li><a onclick="switchPage('booking')" id="nav-booking">Order & Delivery</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- PAGE 1: HOME STUDIO & RECENT EDITORIALS -->
-    <main id="page-home" class="page active-page">
-        <section class="hero">
-            <h1>We Don't Just Print.<br>We <span>Create in 3D & Large Format</span>.</h1>
-            <p>From complex vector stickers and custom-tailored apparel to high-impact retail signage and industrial 3D prototypes. We transform conceptual drawings into physical assets.</p>
-            <button class="btn" onclick="switchPage('booking')">Launch Your Custom Print Run</button>
-        </section>
-
-        <section>
-            <h2 class="section-title">Production <span>Editorials</span></h2>
-            <p class="subtitle">A detailed look into how we engineer bold, memorable brand visibility assets.</p>
-            
-            <div class="editorial-container">
-                <div class="editorial-card">
-                    <h3>01. Vehicle Decals & Wrap Logic</h3>
-                    <p class="text-muted">Precision-cut vinyl graphics for fleet branding and personal customization. Engineered for durability and high visual impact.</p>
-                </div>
-                <div class="editorial-card">
-                    <h3>02. Architectural 3D Signage</h3>
-                    <p class="text-muted">From illuminated channel letters to intricate CNC-routed dimensional logos, we craft landmark signs for storefronts and corporate spaces.</p>
-                </div>
-                <div class="editorial-card">
-                    <h3>03. Bespoke Apparel & Merch</h3>
-                    <p class="text-muted">Custom screen printing, embroidery, and heat transfers on a range of fabrics. Perfect for corporate wear, events, and brand merchandise.</p>
-                </div>
-                <div class="editorial-card">
-                    <h3>04. Industrial Prototypes & Mockups</h3>
-                    <p class="text-muted">Accelerate your product development with high-fidelity 3D printed models and rapid prototypes for functional testing and presentation.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- PAGE 2: SERVICES & ABOUT -->
-    <main id="page-services" class="page">
-        <section>
-            <h2 class="section-title">Our <span>Services</span></h2>
-            <p class="subtitle">Explore our diverse range of printing, fabrication, and design solutions.</p>
-            
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">⭐</div>
-                    <h3>Large Format Printing</h3>
-                    <p class="text-muted">Banners, posters, billboards, and custom wallpaper installations.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">✂️</div>
-                    <h3>Vinyl Cutting & Decals</h3>
-                    <p class="text-muted">Window graphics, vehicle wraps, and custom sticker production.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">👕</div>
-                    <h3>Apparel Branding</h3>
-                    <p class="text-muted">Screen printing, embroidery, and heat press for clothing and textiles.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💡</div>
-                    <h3>Illuminated Signage</h3>
-                    <p class="text-muted">LED channel letters, lightboxes, and backlit displays for maximum impact.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📐</div>
-                    <h3>3D Fabrication</h3>
-                    <p class="text-muted">CNC routing, laser cutting, and 3D printing for unique dimensional signs and prototypes.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
-                    <h3>Graphic Design Support</h3>
-                    <p class="text-muted">From concept to print-ready files, our designers ensure your vision comes to life.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="about-story">
-            <div>
-                <h2 class="section-title" style="text-align: left;">Our <span>Story</span></h2>
-                <p class="text-muted" style="text-align: left; margin-bottom: 1.5rem;">Born from a passion for precision and a commitment to transforming ideas into tangible realities, Rest Ink Signs has grown to be a leader in custom printing, signage, and 3D fabrication. We blend traditional craftsmanship with cutting-edge technology to deliver results that don't just meet, but exceed expectations.</p>
-                <p class="text-muted" style="text-align: left;">Our team of skilled artisans and technicians are dedicated to every project, ensuring impeccable quality and attention to detail, whether it's a small batch of custom stickers or a large-scale architectural sign installation. We believe in building lasting relationships with our clients by providing exceptional service and innovative solutions.</p>
-            </div>
-            <img src="https://via.placeholder.com/400x300?text=RestInk+Team" alt="Rest Ink Signs Team" style="max-width: 100%; height: auto; border-radius: 6px; border: 1px solid #232d3d;">
-        </section>
-    </main>
-
-    <!-- PAGE 3: ORDER BOOKING & LOGISTICS SHIPPING -->
-    <main id="page-booking" class="page">
-        <section>
-            <h2 class="section-title">Initiate Your <span>Order</span></h2>
-            <p class="subtitle">Fill out the form below and a project specialist will contact you shortly.</p>
-
-            <div class="booking-split">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" placeholder="John Doe" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number (Optional)</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Service Required</label>
-                        <select id="service" name="service" required>
-                            <option value="">Select a service</option>
-                            <option value="large-format">Large Format Printing</option>
-                            <option value="vinyl-decals">Vinyl Cutting & Decals</option>
-                            <option value="apparel">Apparel Branding</option>
-                            <option value="illuminated">Illuminated Signage</option>
-                            <option value="3d-fabrication">3D Fabrication</option>
-                            <option value="graphic-design">Graphic Design Support</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="details">Project Details / Specifications</label>
-                        <textarea id="details" name="details" rows="6" placeholder="Describe your project, desired dimensions, quantity, materials, and any specific requirements." required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Submit Project Inquiry</button>
-                </form>
-
-                <div class="shipping-hub">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-light);">Logistics & <span>Shipping</span></h3>
-                    <div class="courier-card">
-                        <h4 style="font-size: 1.4rem; margin-bottom: 0.8rem;">Local Pick-Up Option</h4>
-                        <p class="text-muted">Prefer to collect your order? Our workshop is conveniently located. We'll notify you as soon as your project is ready.</p>
-                        <div class="courier-badge">FREE</div>
-                    </div>
-                    <div class="courier-card">
-                        <h4 style="font-size: 1.4rem; margin-bottom: 0.8rem;">Nationwide Delivery</h4>
-                        <p class="text-muted">We partner with trusted couriers to ensure your custom prints and signs reach you safely and efficiently, anywhere in the country.</p>
-                        <div class="courier-badge">FAST & RELIABLE</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2023 Rest Ink Signs. All rights reserved. Crafting visibility, one print at a time.</p>
-    </footer>
-
-    <script>
-        // Simple client-side routing for single-page experience
-        function switchPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active-page'));
-
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => link.classList.remove('active'));
-
-            document.getElementById(page-${pageId}).classList.add('active-page');
-            document.getElementById(nav-${pageId}).classList.add('active');
-        }
-    </script>
-</body>
-</html>
-
