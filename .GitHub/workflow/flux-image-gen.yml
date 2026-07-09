@@ -1,4 +1,4 @@
-name: FLUX Image Generator
+Inname: FLUX Image Generator
 
 on:
   workflow_dispatch: # Allows you to trigger it manually with a button click
