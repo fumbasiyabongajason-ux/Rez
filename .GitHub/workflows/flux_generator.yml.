@@ -1,0 +1,30 @@
+name: FLUX Image Generator
+
+on:
+  workflow_dispatch: # Allows you to trigger it manually with a button click
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set Up Python
+      uses: actions/setup-python@v5
+      with:
+        python-with: '3.10'
+
+    - name: Install Dependencies
+      run: pip install requests
+
+    - name: Run Image Generation
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: python generate_images.py
+
+    - name: Upload Generated Images
+      uses: actions/upload-artifact@v4
+      with:
+        name: flux-generated-images
+        path: output/
