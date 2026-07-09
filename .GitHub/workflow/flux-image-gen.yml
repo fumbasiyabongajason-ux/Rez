@@ -1,30 +1,38 @@
-Inname: FLUX Image Generator
+name: FLUX Image Generation
 
 on:
-  workflow_dispatch: # Allows you to trigger it manually with a button click
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: 'Text prompt for the image'
+        required: true
+        default: 'A futuristic cybernetic owl, digital art'
+      filename:
+        description: 'Output filename (without extension)'
+        required: true
+        default: 'flux-output'
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout Code
+    - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Set Up Python
-      uses: actions/setup-python@v5
-      with:
-  python-version: '3.10' 
-    - name: Install Dependencies
-      run: pip install requests
+    - name: Call FLUX API and Save Image
+      run: |
+        mkdir -p output
+        curl -X POST "https://huggingface.co" \
+          -H "Authorization: Bearer ${{ secrets.HF_API_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d "{\"inputs\": \"${{ github.event.inputs.prompt }}\"}" \
+          --output output/${{ github.event.inputs.filename }}.png
 
-    - name: Run Image Generation
-      env:
-        HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      run: python generate_images.py
-
-    - name: Upload Generated Images
-      uses: actions/upload-artifact@v4
-      with:
-        name: flux-generated-images
-        path: output/
- 
+    - name: Commit and Push Image
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@://github.com"
+        git add output/*.png
+        git commit -m "Add generated image" || echo "No changes"
+        git push
