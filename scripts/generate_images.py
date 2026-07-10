@@ -1,27 +1,35 @@
 import os
+import sys
 import requests
-import json
 
-# Configuration
+# 1. Base configuration
 API_URL = "https://huggingface.co"
-HEADERS = {"Authorization": f"Bearer {os.getenv('HF_TOKEN')}"}
+token = os.getenv("HF_API_TOKEN")
 
-# List your prompts here (add dozens if needed)
-PROMPTS = [
-    "A futuristic city in the style of cyberpunk, 8k",
-    "A majestic golden retriever playing in a field of sunflowers",
-    "Minimalist line art of a coffee cup on a wooden table"
-]
+if not token:
+    print("Error: HF_API_TOKEN environment variable is missing.")
+    sys.exit(1)
 
-os.makedirs("output", exist_ok=True)
+headers = {"Authorization": f"Bearer {token}"}
 
-for i, prompt in enumerate(PROMPTS):
-    print(f"Generating image {i+1}/{len(PROMPTS)}: {prompt}")
+# 2. Get inputs from GitHub Action environment
+prompt = os.getenv("IMAGE_PROMPT", "A futuristic cybernetic owl perched on a branch")
+filename = os.getenv("OUTPUT_FILENAME", "flux-output")
+
+print(f"Generating image for prompt: {prompt}")
+
+# 3. Request generation from Hugging Face Inference API
+response = requests.post(API_URL, headers=headers, json={"inputs": prompt})
+
+if response.status_code == 200:
+    # Ensure output folder exists
+    os.makedirs("output", exist_ok=True)
     
-    response = requests.post(API_URL, headers=HEADERS, json={"inputs": prompt})
-    
-    if response.status_code == 200:
-        with open(f"output/image_{i+1}.jpg", "wb") as f:
-            f.write(response.content)
-    else:
-        print(f"Failed for prompt {i+1}: {response.text}")
+    # Save the binary image payload
+    output_path = f"output/{filename}.png"
+    with open(output_path, "wb") as f:
+        f.write(response.content)
+    print(f"Success! Image saved to {output_path}")
+else:
+    print(f"API Error ({response.status_code}): {response.text}")
+    sys.exit(1)
