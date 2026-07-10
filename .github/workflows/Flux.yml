@@ -35,7 +35,7 @@ jobs:
         HF_API_TOKEN: ${{ secrets.HF_API_TOKEN }}
         IMAGE_PROMPT: ${{ github.event.inputs.prompt }}
         OUTPUT_FILENAME: ${{ github.event.inputs.filename }}
-      run: python scripts/generate_flux.py
+      run: python scripts/generate_images.py
 
     - name: Commit and Push Generated Image
       run: |
