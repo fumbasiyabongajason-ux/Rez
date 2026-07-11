@@ -38,9 +38,17 @@ jobs:
       run: python scripts/generate_images.py
 
     - name: Commit and Push Generated Image
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@://github.com"
-        git add output/*.png
-        git commit -m "Add generated image: ${{ github.event.inputs.filename }}"
-        git push
+              - name: Commit and Push Generated Image
+          run: |
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@://github.com"
+            
+            # Check if the folder exists and has files before trying to add them
+            if [ -d "output" ] && [ "$(ls -A output)" ]; then
+              git add output/
+              git commit -m "Add generated image"
+              git push
+            else
+              echo "No files found in the output directory to commit!"
+              exit 1
+            fi
