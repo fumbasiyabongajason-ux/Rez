@@ -298,6 +298,97 @@
             position: relative;
         }
 
+        /* ===== SHOWCASE GALLERY (NEW) ===== */
+        .showcase-section {
+            margin-bottom: 4rem;
+        }
+
+        .showcase-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .showcase-card {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .showcase-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(245, 158, 11, 0.1);
+        }
+
+        .showcase-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .showcase-card:hover .showcase-img {
+            transform: scale(1.05);
+        }
+
+        .showcase-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(11, 15, 23, 0.95) 0%, rgba(11, 15, 23, 0.7) 50%, transparent 100%);
+            padding: 2rem 1.5rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .showcase-badge {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: var(--bg-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+        }
+
+        .showcase-overlay h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.3rem;
+            color: var(--text-light);
+        }
+
+        .showcase-overlay p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+            .showcase-gallery {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .showcase-img {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .showcase-img {
+                height: 200px;
+            }
+        }
+
         /* Stats Bar */
         .stats-bar {
             display: grid;
@@ -1106,7 +1197,7 @@
             }
         }
 
-        /* ==================== LIGHTBOX / MODAL ==================== */
+        /* ==================== MODAL ==================== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1313,6 +1404,23 @@
             font-size: 0.82rem;
         }
 
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(11, 15, 23, 0.3);
+            border-top-color: var(--bg-dark);
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 992px) {
             .stats-bar {
@@ -1412,36 +1520,6 @@
                 font-size: 1.8rem;
             }
         }
-
-        /* Loading spinner */
-        .spinner {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            border: 3px solid rgba(11, 15, 23, 0.3);
-            border-top-color: var(--bg-dark);
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-            margin-right: 0.5rem;
-            vertical-align: middle;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Skeleton loading */
-        .skeleton {
-            background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-card-hover) 50%, var(--bg-card) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-            border-radius: 6px;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
     </style>
 </head>
 <body>
@@ -1490,6 +1568,65 @@
             </div>
         </section>
 
+        <!-- ===== NEW: SHOWCASE IMAGES SECTION ===== -->
+        <section class="showcase-section">
+            <h2 class="section-title">What We <span>Do</span></h2>
+            <p class="subtitle">Real work, real impact — here's a glimpse of our craftsmanship</p>
+
+            <div class="showcase-gallery">
+
+                <!-- 1. Branded Vehicle -->
+                <div class="showcase-card" onclick="openModal('showcase-vehicle')">
+                    <img
+                        src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&h=400&fit=crop&q=80"
+                        alt="Branded vehicle wrap by Rest Ink Signs"
+                        class="showcase-img"
+                        onerror="this.onerror=null; this.style.display='none'; this.parentElement.querySelector('.showcase-fallback').style.display='flex';"
+                    >
+                    <div class="showcase-fallback" style="display:none; width:100%; height:280px; background:linear-gradient(135deg,#1a2332,#0d1117); align-items:center; justify-content:center; font-size:5rem;">🚐</div>
+                    <div class="showcase-overlay">
+                        <span class="showcase-badge">Vehicle Branding</span>
+                        <h3>Full Fleet Vehicle Wraps</h3>
+                        <p>Custom-designed vinyl wraps that turn every vehicle into a moving billboard for your brand.</p>
+                    </div>
+                </div>
+
+                <!-- 2. Business Gate Board / Entrance Sign -->
+                <div class="showcase-card" onclick="openModal('showcase-gate')">
+                    <img
+                        src="https://images.unsplash.com/photo-1582407947092-50b8c661e82a?w=600&h=400&fit=crop&q=80"
+                        alt="Business entrance gate board sign"
+                        class="showcase-img"
+                        onerror="this.onerror=null; this.style.display='none'; this.parentElement.querySelector('.showcase-fallback').style.display='flex';"
+                    >
+                    <div class="showcase-fallback" style="display:none; width:100%; height:280px; background:linear-gradient(135deg,#1a2332,#0d1117); align-items:center; justify-content:center; font-size:5rem;">🏢</div>
+                    <div class="showcase-overlay">
+                        <span class="showcase-badge">Gate & Entrance Signs</span>
+                        <h3>Business Gate Board Signage</h3>
+                        <p>Professional entrance signs and gate boards that make a powerful first impression on every visitor.</p>
+                    </div>
+                </div>
+
+                <!-- 3. Printed Doors -->
+                <div class="showcase-card" onclick="openModal('showcase-doors')">
+                    <img
+                        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop&q=80"
+                        alt="Custom printed branded doors"
+                        class="showcase-img"
+                        onerror="this.onerror=null; this.style.display='none'; this.parentElement.querySelector('.showcase-fallback').style.display='flex';"
+                    >
+                    <div class="showcase-fallback" style="display:none; width:100%; height:280px; background:linear-gradient(135deg,#1a2332,#0d1117); align-items:center; justify-content:center; font-size:5rem;">🚪</div>
+                    <div class="showcase-overlay">
+                        <span class="showcase-badge">Door Printing</span>
+                        <h3>Custom Printed Doors</h3>
+                        <p>Branded door wraps and prints that add professional polish to storefronts and office entrances.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- ===== END SHOWCASE ===== -->
+
         <div class="stats-bar">
             <div class="stat-item">
                 <span class="stat-number" data-target="2500">0</span>
@@ -1515,1122 +1652,4 @@
         <div class="editorial-container">
             <div class="editorial-card" onclick="openModal('cnc')">
                 <h3>01 / Precision CNC Milling</h3>
-                <p>Our CNC machines carve intricate letters and logos from solid aluminum, acrylic, and HDU foam with tolerances under 0.005 inches.</p>
-                <button class="read-more">Read More →</button>
-            </div>
-            <div class="editorial-card" onclick="openModal('led')">
-                <h3>02 / LED Integration Systems</h3>
-                <p>We use commercial-grade Samsung & Nichia LEDs with smart drivers that deliver 50,000+ hours of consistent illumination for channel letters.</p>
-                <button class="read-more">Read More →</button>
-            </div>
-            <div class="editorial-card" onclick="openModal('wrap')">
-                <h3>03 / Large-Format Vinyl Wraps</h3>
-                <p>Fleet vehicles, building wraps, and trade show displays printed on premium 3M and Avery vinyl with UV-cured inks for 7+ year outdoor life.</p>
-                <button class="read-more">Read More →</button>
-            </div>
-        </div>
-    </main>
-
-    <!-- ==================== PAGE 2: SERVICES ==================== -->
-    <main id="services" class="page">
-        <h2 class="section-title">Our <span>Services</span></h2>
-        <p class="subtitle">End-to-end signage and print solutions for every business need</p>
-
-        <div class="services-grid">
-            <div class="service-card" onclick="showPage('booking')">
-                <span class="service-icon">🏗️</span>
-                <h3>3D Fabricated Signs</h3>
-                <p>Custom-built dimensional letters and logos from aluminum, acrylic, and PVC with powder-coat or paint finishes.</p>
-                <span class="price-tag">From $1,200</span>
-            </div>
-            <div class="service-card" onclick="showPage('booking')">
-                <span class="service-icon">💡</span>
-                <h3>LED Channel Letters</h3>
-                <p>Front-lit, back-lit, and halo-lit channel letter signs with UL-listed components for storefront impact.</p>
-                <span class="price-tag">From $2,500</span>
-            </div>
-            <div class="service-card" onclick="showPage('booking')">
-                <span class="service-icon">🖨️</span>
-                <h3>Digital Printing</h3>
-                <p>Banners, posters, backdrops, and POP displays using UV and latex printers up to 16 feet wide.</p>
-                <span class="price-tag">From $150</span>
-            </div>
-            <div class="service-card" onclick="showPage('booking')">
-                <span class="service-icon">🚗</span>
-                <h3>Vehicle Wraps</h3>
-                <p>Full and partial fleet wraps with 3M premium vinyl. Design, print, laminate, and professional installation.</p>
-                <span class="price-tag">From $1,800</span>
-            </div>
-            <div class="service-card" onclick="showPage('booking')">
-                <span class="service-icon">🪧</span>
-                <h3>Monument Signs</h3>
-                <p>Ground-level architectural monuments with stone, aluminum, or composite bases featuring integrated lighting.</p>
-                <span class="price-tag">From $3,500</span>
-            </div>
-            <div class="service-card" onclick="showPage('booking')">
-                <span class="service-icon">🎨</span>
-                <h3>Design Services</h3>
-                <p>Complete branding, signage design, CAD engineering drawings, and 3D mockup renderings for approvals.</p>
-                <span class="price-tag">From $300</span>
-            </div>
-        </div>
-
-        <div class="about-story">
-            <div>
-                <h2>Our <span>Story</span></h2>
-                <p>Rest Ink Signs began in a small garage in 2010 with one vision: to bring professional-grade signage to businesses that deserve to be seen. What started as a one-person operation has grown into a full-scale production facility with CNC machines, LED assembly stations, and a dedicated design team.</p>
-                <p>Today, we serve businesses across 48 states — from local storefronts to national franchise rollouts. Every sign we build carries our promise of quality, precision, and durability.</p>
-                <div style="margin-top: 1.5rem;">
-                    <button class="btn" onclick="showPage('contact')">Get In Touch</button>
-                </div>
-            </div>
-            <div class="about-values">
-                <div class="value-item">
-                    <span class="value-icon">⚡</span>
-                    <div>
-                        <h4>Speed</h4>
-                        <p>Most projects completed in 5-10 business days with rush options available.</p>
-                    </div>
-                </div>
-                <div class="value-item">
-                    <span class="value-icon">🎯</span>
-                    <div>
-                        <h4>Precision</h4>
-                        <p>CNC tolerances under 0.005" for perfect letter forms and logo reproduction.</p>
-                    </div>
-                </div>
-                <div class="value-item">
-                    <span class="value-icon">🛡️</span>
-                    <div>
-                        <h4>Durability</h4>
-                        <p>All outdoor products rated for 7+ years with commercial-grade materials.</p>
-                    </div>
-                </div>
-                <div class="value-item">
-                    <span class="value-icon">🤝</span>
-                    <div>
-                        <h4>Partnership</h4>
-                        <p>We treat every client like a long-term partner, not a transaction.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- ==================== PAGE 3: PORTFOLIO ==================== -->
-    <main id="portfolio" class="page">
-        <h2 class="section-title">Our <span>Portfolio</span></h2>
-        <p class="subtitle">Browse our latest signage and fabrication projects</p>
-
-        <div class="portfolio-filters">
-            <button class="filter-btn active" onclick="filterPortfolio('all', this)">All</button>
-            <button class="filter-btn" onclick="filterPortfolio('signs', this)">Signs</button>
-            <button class="filter-btn" onclick="filterPortfolio('prints', this)">Prints</button>
-            <button class="filter-btn" onclick="filterPortfolio('wraps', this)">Wraps</button>
-            <button class="filter-btn" onclick="filterPortfolio('led', this)">LED</button>
-        </div>
-
-        <div class="portfolio-grid" id="portfolioGrid">
-            <div class="portfolio-item" data-category="signs" onclick="openModal('project1')">
-                <div class="portfolio-image">🏢</div>
-                <div class="portfolio-info">
-                    <h3>Downtown Luxury Hotel</h3>
-                    <p>Custom 3D fabricated aluminum letters with brushed gold finish and halo-lit LED illumination.</p>
-                    <span class="portfolio-tag">3D Signs</span>
-                </div>
-            </div>
-            <div class="portfolio-item" data-category="wraps" onclick="openModal('project2')">
-                <div class="portfolio-image">🚐</div>
-                <div class="portfolio-info">
-                    <h3>Metro Plumbing Fleet</h3>
-                    <p>Full fleet wrap for 12 service vehicles. 3M IJ180Cv3 with 8518 overlaminate.</p>
-                    <span class="portfolio-tag">Vehicle Wrap</span>
-                </div>
-            </div>
-            <div class="portfolio-item" data-category="led" onclick="openModal('project3')">
-                <div class="portfolio-image">💡</div>
-                <div class="portfolio-info">
-                    <h3>Sunset Café Channel Letters</h3>
-                    <p>Front-lit channel letters with red and warm white LEDs. UL-listed power supply.</p>
-                    <span class="portfolio-tag">LED Signs</span>
-                </div>
-            </div>
-            <div class="portfolio-item" data-category="prints" onclick="openModal('project4')">
-                <div class="portfolio-image">🎪</div>
-                <div class="portfolio-info">
-                    <h3>Tech Expo Trade Show</h3>
-                    <p>10x20 booth backdrop, retractable banners, and table throws with dye-sublimation printing.</p>
-                    <span class="portfolio-tag">Print</span>
-                </div>
-            </div>
-            <div class="portfolio-item" data-category="signs" onclick="openModal('project5')">
-                <div class="portfolio-image">🏥</div>
-                <div class="portfolio-info">
-                    <h3>Regional Medical Center</h3>
-                    <p>Complete wayfinding system with ADA-compliant tactile signs and directory boards.</p>
-                    <span class="portfolio-tag">Wayfinding</span>
-                </div>
-            </div>
-            <div class="portfolio-item" data-category="led" onclick="openModal('project6')">
-                <div class="portfolio-image">🍕</div>
-                <div class="portfolio-info">
-                    <h3>Tony's Pizzeria</h3>
-                    <p>Retro-style open-face neon-look LED sign with animated sequence controller.</p>
-                    <span class="portfolio-tag">LED Signs</span>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- ==================== PAGE 4: BOOKING / ORDER ==================== -->
-    <main id="booking" class="page">
-        <h2 class="section-title">Place Your <span>Order</span></h2>
-        <p class="subtitle">Fill out the form below and we'll send you a detailed estimate within 24 hours</p>
-
-        <div class="booking-split">
-            <form id="orderForm" onsubmit="return handleOrderSubmit(event)">
-                <h3 class="form-title">Project <span>Details</span></h3>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="fullName">Full Name *</label>
-                        <input type="text" id="fullName" placeholder="John Smith" required>
-                        <span class="error-msg" id="fullNameError">Please enter your name</span>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" placeholder="john@company.com" required>
-                        <span class="error-msg" id="emailError">Please enter a valid email</span>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" placeholder="(555) 123-4567" required>
-                        <span class="error-msg" id="phoneError">Please enter your phone number</span>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" placeholder="Your Business LLC">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="serviceType">Service Type *</label>
-                    <select id="serviceType" required>
-                        <option value="">Select a service...</option>
-                        <option value="3d-signs">3D Fabricated Signs</option>
-                        <option value="channel-letters">LED Channel Letters</option>
-                        <option value="digital-print">Digital Printing</option>
-                        <option value="vehicle-wraps">Vehicle Wraps</option>
-                        <option value="monument">Monument Signs</option>
-                        <option value="design">Design Services</option>
-                        <option value="other">Other / Custom</option>
-                    </select>
-                    <span class="error-msg" id="serviceTypeError">Please select a service</span>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="quantity">Quantity</label>
-                        <input type="number" id="quantity" placeholder="1" min="1" value="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="deadline">Deadline</label>
-                        <input type="date" id="deadline">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="projectDetails">Project Description *</label>
-                    <textarea id="projectDetails" rows="5" placeholder="Describe your project — dimensions, materials, colors, installation location, etc." required></textarea>
-                    <span class="error-msg" id="projectDetailsError">Please describe your project</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="budget">Estimated Budget</label>
-                    <select id="budget">
-                        <option value="">Select budget range...</option>
-                        <option value="under-500">Under $500</option>
-                        <option value="500-1500">$500 – $1,500</option>
-                        <option value="1500-5000">$1,500 – $5,000</option>
-                        <option value="5000-15000">$5,000 – $15,000</option>
-                        <option value="15000+">$15,000+</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn" id="submitBtn">Submit Order Request</button>
-            </form>
-
-            <div class="shipping-hub">
-                <div class="courier-card">
-                    <h3>📦 Shipping & Delivery</h3>
-                    <p>We ship nationwide using freight carriers for large signs and UPS/FedEx for smaller prints and materials.</p>
-                    <div class="courier-badge">FREE SHIPPING ON ORDERS $2,500+</div>
-                    <div class="delivery-features">
-                        <div class="delivery-feature"><span class="check">✓</span> Crated & padded for safe transit</div>
-                        <div class="delivery-feature"><span class="check">✓</span> Real-time tracking provided</div>
-                        <div class="delivery-feature"><span class="check">✓</span> Insurance included on all shipments</div>
-                        <div class="delivery-feature"><span class="check">✓</span> White-glove delivery available</div>
-                    </div>
-                </div>
-
-                <div class="courier-card">
-                    <h3>🔧 Installation Services</h3>
-                    <p>Professional installation teams available in major metro areas. We handle permits, electrical, and structural mounting.</p>
-                    <div class="delivery-features">
-                        <div class="delivery-feature"><span class="check">✓</span> Licensed & insured installers</div>
-                        <div class="delivery-feature"><span class="check">✓</span> Permit coordination included</div>
-                        <div class="delivery-feature"><span class="check">✓</span> Structural engineering if required</div>
-                        <div class="delivery-feature"><span class="check">✓</span> Post-install photo documentation</div>
-                    </div>
-                </div>
-
-                <div class="order-tracker">
-                    <h3>📍 Track Your Order</h3>
-                    <div class="tracker-input">
-                        <input type="text" placeholder="Enter order number..." id="trackingInput">
-                        <button class="btn btn-sm" onclick="trackOrder()">Track</button>
-                    </div>
-                    <div class="tracker-steps" id="trackerSteps" style="display:none;">
-                        <div class="tracker-step">
-                            <div class="step-dot completed"></div>
-                            <div class="step-info">
-                                <h4>Order Confirmed</h4>
-                                <p>Your order has been received and confirmed</p>
-                            </div>
-                        </div>
-                        <div class="tracker-step">
-                            <div class="step-dot completed"></div>
-                            <div class="step-info">
-                                <h4>Design Approval</h4>
-                                <p>Proof approved and sent to production</p>
-                            </div>
-                        </div>
-                        <div class="tracker-step">
-                            <div class="step-dot current"></div>
-                            <div class="step-info">
-                                <h4>In Production</h4>
-                                <p>Currently being fabricated in our shop</p>
-                            </div>
-                        </div>
-                        <div class="tracker-step">
-                            <div class="step-dot"></div>
-                            <div class="step-info">
-                                <h4>Quality Check</h4>
-                                <p>Final inspection before shipping</p>
-                            </div>
-                        </div>
-                        <div class="tracker-step">
-                            <div class="step-dot"></div>
-                            <div class="step-info">
-                                <h4>Shipped</h4>
-                                <p>On its way to you!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- ==================== PAGE 5: REVIEWS ==================== -->
-    <main id="reviews" class="page">
-        <h2 class="section-title">Client <span>Reviews</span></h2>
-        <p class="subtitle">See what our customers are saying about Rest Ink Signs</p>
-
-        <div class="reviews-layout">
-            <div>
-                <div class="reviews-list" id="reviewsList">
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">MJ</div>
-                                <div>
-                                    <div class="reviewer-name">Marcus Johnson</div>
-                                    <div class="reviewer-date">December 15, 2024</div>
-                                </div>
-                            </div>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                        <p>Incredible quality on our channel letter sign. The LED brightness is perfect even in broad daylight. Installation crew was professional and finished ahead of schedule. Highly recommend!</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">SR</div>
-                                <div>
-                                    <div class="reviewer-name">Sarah Rodriguez</div>
-                                    <div class="reviewer-date">November 28, 2024</div>
-                                </div>
-                            </div>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                        <p>Had a full vehicle wrap done on our delivery van. The design team nailed the concept on the first proof. Print quality is stunning and it's held up great through rain and car washes.</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">DK</div>
-                                <div>
-                                    <div class="reviewer-name">David Kim</div>
-                                    <div class="reviewer-date">October 10, 2024</div>
-                                </div>
-                            </div>
-                            <div class="stars">★★★★☆</div>
-                        </div>
-                        <p>Great monument sign for our office complex. Only minor issue was a slight delay due to permitting, but the team kept us updated throughout. Final product exceeded expectations.</p>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info">
-                                <div class="reviewer-avatar">LP</div>
-                                <div>
-                                    <div class="reviewer-name">Lisa Patel</div>
-                                    <div class="reviewer-date">September 5, 2024</div>
-                                </div>
-                            </div>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                        <p>We ordered trade show graphics for a national expo — banners, backdrops, and table throws. Everything arrived on time, perfectly printed, and exactly as designed. Will use again!</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="review-form-sidebar">
-                <div class="rating-summary">
-                    <div class="rating-big">4.8</div>
-                    <div class="stars" style="font-size:1.3rem; margin:0.5rem 0;">★★★★★</div>
-                    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1.5rem;">Based on <span id="totalReviews">127</span> reviews</p>
-                    <div class="rating-bar-row"><span>5★</span><div class="rating-bar"><div class="rating-bar-fill" style="width:78%"></div></div><span>78%</span></div>
-                    <div class="rating-bar-row"><span>4★</span><div class="rating-bar"><div class="rating-bar-fill" style="width:15%"></div></div><span>15%</span></div>
-                    <div class="rating-bar-row"><span>3★</span><div class="rating-bar"><div class="rating-bar-fill" style="width:5%"></div></div><span>5%</span></div>
-                    <div class="rating-bar-row"><span>2★</span><div class="rating-bar"><div class="rating-bar-fill" style="width:1%"></div></div><span>1%</span></div>
-                    <div class="rating-bar-row"><span>1★</span><div class="rating-bar"><div class="rating-bar-fill" style="width:1%"></div></div><span>1%</span></div>
-                </div>
-
-                <form onsubmit="return handleReviewSubmit(event)" style="border-top: 4px solid var(--accent-orange);">
-                    <h3 class="form-title">Leave a <span>Review</span></h3>
-
-                    <div class="form-group">
-                        <label>Your Rating *</label>
-                        <div class="star-rating-input" id="starRating">
-                            <span onclick="setRating(1)">★</span>
-                            <span onclick="setRating(2)">★</span>
-                            <span onclick="setRating(3)">★</span>
-                            <span onclick="setRating(4)">★</span>
-                            <span onclick="setRating(5)">★</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="reviewerName">Your Name *</label>
-                        <input type="text" id="reviewerName" placeholder="Your name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="reviewText">Your Review *</label>
-                        <textarea id="reviewText" rows="4" placeholder="Share your experience..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn">Submit Review</button>
-                </form>
-            </div>
-        </div>
-    </main>
-
-    <!-- ==================== PAGE 6: FAQ ==================== -->
-    <main id="faq" class="page">
-        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
-        <p class="subtitle">Everything you need to know about our services and process</p>
-
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>How long does a typical sign project take?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Most standard projects are completed within 5-10 business days from design approval. Complex 3D fabrication or large-scale installations may take 2-4 weeks. Rush options are available — just let us know your timeline when you submit your order.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Do you handle permits and city approvals?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Yes! We handle sign permit applications for most jurisdictions. Our team prepares engineering drawings, site plans, and all required documentation. Permit timelines vary by city — typically 1-4 weeks. We'll keep you updated throughout the process.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>What materials do you use for outdoor signs?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    We use commercial-grade materials rated for outdoor exposure: aluminum (0.063" - 0.125"), acrylic (3mm - 25mm), HDU foam, PVC, dibond, polycarbonate, and stainless steel. All finishes include automotive-grade paint or powder coating with UV clear coats for maximum durability.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Do you ship nationwide?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Absolutely! We ship to all 48 contiguous states. Large signs are crated and shipped via freight carriers (LTL). Smaller items ship via UPS or FedEx. Orders over $2,500 qualify for free shipping. Every shipment includes full insurance and tracking.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Can I see a proof before production?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    Yes — we never go to production without your approval. You'll receive a digital proof and/or 3D mockup rendering showing exactly how your sign will look. We include up to 2 rounds of revisions in our standard pricing. Additional revisions are available at our hourly design rate.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>What's your warranty policy?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    All fabricated signs include a 3-year warranty covering manufacturing defects, LED failure, and finish issues. Our LEDs carry a separate 5-year performance warranty. Vehicle wraps are warranted for the life of the vinyl (typically 5-7 years for premium cast vinyl). We stand behind everything we build.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>What file formats do you accept for printing?</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    We accept AI, EPS, PDF, PSD, and SVG for vector artwork. For raster/photo images, we need high-resolution files at 150+ DPI at final size (TIFF, PSD, or JPEG). Our design team can also work from rough sketches, photos, or brand guidelines to create production-ready artwork.
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- ==================== PAGE 7: CONTACT ==================== -->
-    <main id="contact" class="page">
-        <h2 class="section-title">Get In <span>Touch</span></h2>
-        <p class="subtitle">Reach out — we'd love to hear about your project</p>
-
-        <div class="contact-grid">
-            <div>
-                <div class="contact-info-cards">
-                    <div class="contact-card" onclick="showToast('Phone number copied!', 'success')">
-                        <span class="contact-icon">📞</span>
-                        <div>
-                            <h3>Phone</h3>
-                            <p>(555) 987-6543</p>
-                            <p style="font-size:0.8rem;">Mon - Fri: 8AM - 6PM EST</p>
-                        </div>
-                    </div>
-                    <div class="contact-card" onclick="showToast('Email address copied!', 'success')">
-                        <span class="contact-icon">✉️</span>
-                        <div>
-                            <h3>Email</h3>
-                            <p>orders@restinksigns.com</p>
-                            <p style="font-size:0.8rem;">We respond within 2 hours</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <span class="contact-icon">📍</span>
-                        <div>
-                            <h3>Production Facility</h3>
-                            <p>4521 Industrial Blvd, Suite 200</p>
-                            <p>Atlanta, GA 30336</p>
-                        </div>
-                    </div>
-                    <div class="contact-card">
-                        <span class="contact-icon">🕐</span>
-                        <div>
-                            <h3>Business Hours</h3>
-                            <p>Monday – Friday: 8:00 AM – 6:00 PM</p>
-                            <p>Saturday: 9:00 AM – 2:00 PM (by appt)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="map-placeholder">
-                    📍 Interactive Map — 4521 Industrial Blvd, Atlanta GA
-                </div>
-            </div>
-
-            <form onsubmit="return handleContactSubmit(event)">
-                <h3 class="form-title">Send a <span>Message</span></h3>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="contactName">Name *</label>
-                        <input type="text" id="contactName" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactEmail">Email *</label>
-                        <input type="email" id="contactEmail" placeholder="you@email.com" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="contactSubject">Subject</label>
-                    <input type="text" id="contactSubject" placeholder="What's this about?">
-                </div>
-
-                <div class="form-group">
-                    <label for="contactMessage">Message *</label>
-                    <textarea id="contactMessage" rows="6" placeholder="Tell us about your project or question..." required></textarea>
-                </div>
-
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-        </div>
-    </main>
-
-    <!-- ==================== MODAL ==================== -->
-    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-        <div class="modal-content" id="modalContent">
-            <button class="modal-close" onclick="closeModalDirect()">✕</button>
-            <div id="modalBody"></div>
-        </div>
-    </div>
-
-    <!-- ==================== TOAST CONTAINER ==================== -->
-    <div class="toast-container" id="toastContainer"></div>
-
-    <!-- ==================== BACK TO TOP ==================== -->
-    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Rest Ink Signs</h4>
-                <p>Premium signage and custom printing for businesses that demand quality. Built to stand out. Built to last.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Services</h4>
-                <a onclick="showPage('services')">3D Fabricated Signs</a>
-                <a onclick="showPage('services')">LED Channel Letters</a>
-                <a onclick="showPage('services')">Vehicle Wraps</a>
-                <a onclick="showPage('services')">Digital Printing</a>
-                <a onclick="showPage('services')">Monument Signs</a>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <a onclick="showPage('services')">About Us</a>
-                <a onclick="showPage('portfolio')">Portfolio</a>
-                <a onclick="showPage('reviews')">Reviews</a>
-                <a onclick="showPage('faq')">FAQ</a>
-                <a onclick="showPage('contact')">Contact</a>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p>📞 (555) 987-6543</p>
-                <p>✉️ orders@restinksigns.com</p>
-                <p>📍 Atlanta, GA 30336</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2024 Rest Ink Signs. All Rights Reserved.</p>
-            <div class="social-links">
-                <a href="#" title="Facebook">📘</a>
-                <a href="#" title="Instagram">📷</a>
-                <a href="#" title="LinkedIn">💼</a>
-                <a href="#" title="YouTube">🎬</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ==================== JAVASCRIPT ==================== -->
-    <script>
-        // ==================== PAGE ROUTING ====================
-        const pages = ['home', 'services', 'portfolio', 'booking', 'reviews', 'faq', 'contact'];
-
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(p => {
-                p.classList.remove('active-page');
-            });
-
-            // Show target page
-            const target = document.getElementById(pageId);
-            if (target) {
-                target.classList.remove('active-page');
-                // Force re-trigger animation
-                void target.offsetWidth;
-                target.classList.add('active-page');
-            }
-
-            // Update nav active states
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-            const navLink = document.getElementById('nav-' + pageId);
-            if (navLink) navLink.classList.add('active');
-
-            // Close mobile menu
-            document.getElementById('navMenu').classList.remove('open');
-            document.getElementById('hamburger').classList.remove('open');
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Update URL hash
-            window.location.hash = pageId;
-
-            // Trigger counter animation on home page
-            if (pageId === 'home') {
-                setTimeout(animateCounters, 300);
-            }
-        }
-
-        // Handle browser back/forward
-        window.addEventListener('hashchange', () => {
-            const hash = window.location.hash.replace('#', '');
-            if (pages.includes(hash)) {
-                showPage(hash);
-            }
-        });
-
-        // Load from URL hash on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            const hash = window.location.hash.replace('#', '');
-            if (pages.includes(hash)) {
-                showPage(hash);
-            } else {
-                animateCounters();
-            }
-        });
-
-        // ==================== MOBILE MENU ====================
-        function toggleMobileMenu() {
-            document.getElementById('navMenu').classList.toggle('open');
-            document.getElementById('hamburger').classList.toggle('open');
-        }
-
-        // ==================== COUNTER ANIMATION ====================
-        let countersAnimated = false;
-
-        function animateCounters() {
-            if (countersAnimated) return;
-            countersAnimated = true;
-
-            const counters = document.querySelectorAll('.stat-number[data-target]');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000;
-                const step = target / (duration / 16);
-                let current = 0;
-
-                const timer = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                        counter.textContent = target.toLocaleString() + '+';
-                        clearInterval(timer);
-                    } else {
-                        counter.textContent = Math.floor(current).toLocaleString();
-                    }
-                }, 16);
-            });
-        }
-
-        // ==================== TOAST NOTIFICATIONS ====================
-        function showToast(message, type = 'success') {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            const icons = { success: '✅', error: '❌', info: 'ℹ️' };
-            toast.className = `toast toast-${type}`;
-            toast.innerHTML = `<span>${icons[type] || '✅'}</span> ${message}`;
-            container.appendChild(toast);
-
-            setTimeout(() => {
-                if (toast.parentNode) toast.parentNode.removeChild(toast);
-            }, 4000);
-        }
-
-        // ==================== ORDER FORM ====================
-        function handleOrderSubmit(e) {
-            e.preventDefault();
-            let valid = true;
-
-            // Validate fields
-            const fields = [
-                { id: 'fullName', errorId: 'fullNameError' },
-                { id: 'email', errorId: 'emailError' },
-                { id: 'phone', errorId: 'phoneError' },
-                { id: 'serviceType', errorId: 'serviceTypeError' },
-                { id: 'projectDetails', errorId: 'projectDetailsError' }
-            ];
-
-            fields.forEach(field => {
-                const input = document.getElementById(field.id);
-                const error = document.getElementById(field.errorId);
-                if (!input.value.trim()) {
-                    input.classList.add('error');
-                    error.classList.add('show');
-                    valid = false;
-                } else {
-                    input.classList.remove('error');
-                    error.classList.remove('show');
-                }
-            });
-
-            // Email validation
-            const email = document.getElementById('email');
-            if (email.value && !email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                email.classList.add('error');
-                document.getElementById('emailError').classList.add('show');
-                valid = false;
-            }
-
-            if (!valid) {
-                showToast('Please fill in all required fields', 'error');
-                return false;
-            }
-
-            // Simulate submission
-            const btn = document.getElementById('submitBtn');
-            btn.innerHTML = '<span class="spinner"></span> Submitting...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                btn.innerHTML = 'Submit Order Request';
-                btn.disabled = false;
-                e.target.reset();
-                showToast('Order submitted successfully! We\'ll contact you within 24 hours.', 'success');
-            }, 2000);
-
-            return false;
-        }
-
-        // ==================== CONTACT FORM ====================
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button[type="submit"]');
-            btn.innerHTML = '<span class="spinner"></span> Sending...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                btn.innerHTML = 'Send Message';
-                btn.disabled = false;
-                e.target.reset();
-                showToast('Message sent! We\'ll get back to you soon.', 'success');
-            }, 1500);
-
-            return false;
-        }
-
-        // ==================== REVIEW SYSTEM ====================
-        let selectedRating = 0;
-
-        function setRating(rating) {
-            selectedRating = rating;
-            const stars = document.querySelectorAll('#starRating span');
-            stars.forEach((star, index) => {
-                star.classList.toggle('selected', index < rating);
-            });
-        }
-
-        function handleReviewSubmit(e) {
-            e.preventDefault();
-
-            if (selectedRating === 0) {
-                showToast('Please select a star rating', 'error');
-                return false;
-            }
-
-            const name = document.getElementById('reviewerName').value.trim();
-            const text = document.getElementById('reviewText').value.trim();
-
-            if (!name || !text) {
-                showToast('Please fill in all fields', 'error');
-                return false;
-            }
-
-            // Create initials
-            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-            const starStr = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
-            const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-
-            const reviewHTML = `
-                <div class="review-card" style="animation: slideUp 0.4s ease;">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <div class="reviewer-avatar">${initials}</div>
-                            <div>
-                                <div class="reviewer-name">${name}</div>
-                                <div class="reviewer-date">${today}</div>
-                            </div>
-                        </div>
-                        <div class="stars">${starStr}</div>
-                    </div>
-                    <p>${text}</p>
-                </div>
-            `;
-
-            document.getElementById('reviewsList').insertAdjacentHTML('afterbegin', reviewHTML);
-
-            // Update count
-            const totalEl = document.getElementById('totalReviews');
-            totalEl.textContent = parseInt(totalEl.textContent) + 1;
-
-            // Reset form
-            e.target.reset();
-            selectedRating = 0;
-            document.querySelectorAll('#starRating span').forEach(s => s.classList.remove('selected'));
-
-            showToast('Thank you! Your review has been posted.', 'success');
-            return false;
-        }
-
-        // ==================== FAQ ACCORDION ====================
-        function toggleFaq(el) {
-            const item = el.parentElement;
-            const wasOpen = item.classList.contains('open');
-
-            // Close all
-            document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
-
-            // Toggle clicked
-            if (!wasOpen) {
-                item.classList.add('open');
-            }
-        }
-
-        // ==================== PORTFOLIO FILTER ====================
-        function filterPortfolio(category, btn) {
-            // Update active filter button
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Filter items
-            document.querySelectorAll('.portfolio-item').forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'block';
-                    item.style.animation = 'slideUp 0.4s ease forwards';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        // ==================== ORDER TRACKER ====================
-        function trackOrder() {
-            const input = document.getElementById('trackingInput').value.trim();
-            if (!input) {
-                showToast('Please enter an order number', 'error');
-                return;
-            }
-
-            const tracker = document.getElementById('trackerSteps');
-            tracker.style.display = 'none';
-
-            showToast('Looking up order #' + input + '...', 'info');
-
-            setTimeout(() => {
-                tracker.style.display = 'flex';
-                tracker.style.animation = 'slideUp 0.4s ease';
-                showToast('Order found! Here\'s your status.', 'success');
-            }, 1500);
-        }
-
-        // ==================== MODAL SYSTEM ====================
-        const modalData = {
-            cnc: {
-                title: '🔧 Precision CNC Milling',
-                body: `<h2 style="margin-bottom:1rem;">CNC Fabrication Process</h2>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;">Our 3-axis and 5-axis CNC routers operate with tolerances under 0.005 inches, allowing us to produce intricate dimensional letters, logos, and architectural elements from solid materials.</p>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;"><strong style="color:var(--accent-orange);">Materials:</strong> 6061 Aluminum, Cast Acrylic, HDU Foam (Precision Board), PVC, Corian, Composite Aluminum Panel</p>
-                    <p style="color:var(--text-muted); margin-bottom:1.5rem;"><strong style="color:var(--accent-orange);">Capabilities:</strong> Up to 5'x10' sheet size, 3D contouring, V-carving, pocket milling, edge profiling</p>
-                    <button class="btn" onclick="closeModalDirect(); showPage('booking');">Get a CNC Quote</button>`
-            },
-            led: {
-                title: '💡 LED Integration Systems',
-                body: `<h2 style="margin-bottom:1rem;">LED Illumination Technology</h2>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;">We exclusively use Samsung and Nichia LED modules rated at 50,000+ hours. Our UL-listed power supplies include smart drivers with dimming and remote monitoring capabilities.</p>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;"><strong style="color:var(--accent-orange);">Options:</strong> Front-lit, Back-lit (Halo), Edge-lit, Combination, Color-changing RGB</p>
-                    <p style="color:var(--text-muted); margin-bottom:1.5rem;"><strong style="color:var(--accent-orange);">Warranty:</strong> 5-year LED performance warranty standard on all channel letter signs</p>
-                    <button class="btn" onclick="closeModalDirect(); showPage('booking');">Order LED Signs</button>`
-            },
-            wrap: {
-                title: '🚗 Large-Format Vinyl Wraps',
-                body: `<h2 style="margin-bottom:1rem;">Premium Wrap Solutions</h2>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;">We use 3M IJ180Cv3 and Avery Dennison MPI 1105 cast vinyl with matched overlaminates for maximum conformability and 7+ year outdoor durability.</p>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;"><strong style="color:var(--accent-orange);">Applications:</strong> Fleet vehicles, building wraps, wall murals, floor graphics, trade show displays</p>
-                    <p style="color:var(--text-muted); margin-bottom:1.5rem;"><strong style="color:var(--accent-orange);">Process:</strong> Design → Print → Laminate → Professional Installation → Quality Photo</p>
-                    <button class="btn" onclick="closeModalDirect(); showPage('booking');">Get a Wrap Quote</button>`
-            },
-            project1: {
-                title: '🏢 Downtown Luxury Hotel',
-                body: `<h2 style="margin-bottom:1rem;">Project Details</h2>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;">Custom 3D fabricated aluminum channel letters with brushed gold PVD finish and warm white halo-lit LED illumination. Mounted on marble facade at 25-foot height.</p>
-                    <p style="color:var(--text-muted);"><strong style="color:var(--accent-orange);">Materials:</strong> 0.090" Aluminum, Samsung 3000K LEDs, PVD Gold Finish</p>
-                    <p style="color:var(--text-muted);"><strong style="color:var(--accent-orange);">Size:</strong> 36" tall letters, 18' total width</p>
-                    <p style="color:var(--text-muted); margin-bottom:1.5rem;"><strong style="color:var(--accent-orange);">Timeline:</strong> 3 weeks design + fabrication, 1 day install</p>
-                    <button class="btn" onclick="closeModalDirect(); showPage('booking');">Start Similar Project</button>`
-            },
-            project2: {
-                title: '🚐 Metro Plumbing Fleet Wraps',
-                body: `<h2 style="margin-bottom:1rem;">Fleet Wrap Campaign</h2>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;">Full wraps for 12 Ford Transit vans. Designed a cohesive brand identity system that maintains consistency across all vehicles.</p>
-                    <p style="color:var(--text-muted);"><strong style="color:var(--accent-orange);">Vinyl:</strong> 3M IJ180Cv3 with 8518 overlaminate</p>
-                    <p style="color:var(--text-muted); margin-bottom:1.5rem;"><strong style="color:var(--accent-orange);">Timeline:</strong> 2 weeks design, 3 days production, 2 vehicles/day install</p>
-                    <button class="btn" onclick="closeModalDirect(); showPage('booking');">Wrap Your Fleet</button>`
-            },
-            project3: {
-                title: '💡 Sunset Café Channel Letters',
-                body: `<h2 style="margin-bottom:1rem;">Restaurant Signage</h2>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;">Front-lit channel letters with custom-mixed red acrylic faces and warm white returns. UL-listed with remote-access LED driver for easy maintenance.</p>
-                    <p style="color:var(--text-muted); margin-bottom:1.5rem;"><strong style="color:var(--accent-orange);">Size:</strong> 24" tall, 12' wide raceway mounted</p>
-                    <button class="btn" onclick="closeModalDirect(); showPage('booking');">Order Channel Letters</button>`
-            },
-            project4: {
-                title: '🎪 Tech Expo Trade Show',
-                body: `<h2 style="margin-bottom:1rem;">Trade Show Graphics</h2>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;">Complete booth package: 10x20 fabric backdrop with dye-sublimation printing, 4 retractable banners, branded table throw, and iPad stand graphics.</p>
-                    <p style="color:var(--text-muted); margin-bottom:1.5rem;"><strong style="color:var(--accent-orange);">Turnaround:</strong> 5 business days from approval to delivery</p>
-                    <button class="btn" onclick="closeModalDirect(); showPage('booking');">Order Show Graphics</button>`
-            },
-            project5: {
-                title: '🏥 Regional Medical Center',
-                body: `<h2 style="margin-bottom:1rem;">Wayfinding System</h2>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;">Comprehensive ADA-compliant wayfinding system including room signs, directory boards, exterior monument, and overhead directional signs.</p>
-                    <p style="color:var(--text-muted); margin-bottom:1.5rem;"><strong style="color:var(--accent-orange);">Compliance:</strong> Full ADA/TAS compliance with grade 2 braille, tactile text, high-contrast colors</p>
-                    <button class="btn" onclick="closeModalDirect(); showPage('booking');">Plan Your Wayfinding</button>`
-            },
-            project6: {
-                title: '🍕 Tony\'s Pizzeria',
-                body: `<h2 style="margin-bottom:1rem;">Retro LED Sign</h2>
-                    <p style="color:var(--text-muted); margin-bottom:1rem;">Open-face channel letters with exposed LED bulb modules creating a classic neon look. Animated sequence controller creates a chase pattern for vintage appeal.</p>
-                    <p style="color:var(--text-muted); margin-bottom:1.5rem;"><strong style="color:var(--accent-orange);">Style:</strong> Retro marquee with programmable animations</p>
-                    <button class="btn" onclick="closeModalDirect(); showPage('booking');">Design Your Sign</button>`
-            }
-        };
-
-        function openModal(key) {
-            const data = modalData[key];
-            if (!data) return;
-
-            document.getElementById('modalBody').innerHTML = data.body;
-            document.getElementById('modalOverlay').classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(e) {
-            if (e.target === document.getElementById('modalOverlay')) {
-                closeModalDirect();
-            }
-        }
-
-        function closeModalDirect() {
-            document.getElementById('modalOverlay').classList.remove('show');
-            document.body.style.overflow = '';
-        }
-
-        // ==================== SEARCH ====================
-        function toggleSearch() {
-            const overlay = document.getElementById('searchOverlay');
-            overlay.classList.toggle('show');
-            if (overlay.classList.contains('show')) {
-                setTimeout(() => document.getElementById('searchInput').focus(), 100);
-            }
-        }
-
-        const searchIndex = [
-            { title: 'Home', desc: 'Main landing page with company overview', page: 'home' },
-            { title: '3D Fabricated Signs', desc: 'Custom dimensional letters and logos', page: 'services' },
-            { title: 'LED Channel Letters', desc: 'Illuminated storefront signage', page: 'services' },
-            { title: 'Digital Printing', desc: 'Banners, posters, and displays', page: 'services' },
-            { title: 'Vehicle Wraps', desc: 'Full and partial fleet wraps', page: 'services' },
-            { title: 'Monument Signs', desc: 'Ground-level architectural signs', page: 'services' },
-            { title: 'Design Services', desc: 'Branding, CAD, and 3D mockups', page: 'services' },
-            { title: 'Portfolio', desc: 'Browse completed projects', page: 'portfolio' },
-            { title: 'Place an Order', desc: 'Submit a project request', page: 'booking' },
-            { title: 'Shipping & Delivery', desc: 'Nationwide shipping info', page: 'booking' },
-            { title: 'Track Order', desc: 'Track your order status', page: 'booking' },
-            { title: 'Reviews', desc: 'Read and submit client reviews', page: 'reviews' },
-            { title: 'FAQ - Project Timeline', desc: 'How long does a project take?', page: 'faq' },
-            { title: 'FAQ - Permits', desc: 'Do you handle permits?', page: 'faq' },
-            { title: 'FAQ - Materials', desc: 'What materials do you use?', page: 'faq' },
-            { title: 'FAQ - Shipping', desc: 'Do you ship nationwide?', page: 'faq' },
-            { title: 'FAQ - Proofs', desc: 'Can I see a proof before production?', page: 'faq' },
-            { title: 'FAQ - Warranty', desc: 'Warranty policy information', page: 'faq' },
-            { title: 'FAQ - File Formats', desc: 'What file formats do you accept?', page: 'faq' },
-            { title: 'Contact Us', desc: 'Phone, email, and location info', page: 'contact' },
-            { title: 'CNC Milling', desc: 'Precision CNC fabrication process', page: 'home' },
-            { title: 'LED Integration', desc: 'Commercial LED systems', page: 'home' },
-            { title: 'Vinyl Wraps', desc: 'Large-format vinyl wrap solutions', page: 'home' },
-        ];
-
-        function performSearch(query) {
-            const results = document.getElementById('searchResults');
-            results.innerHTML = '';
-
-            if (query.length < 2) return;
-
-            const q = query.toLowerCase();
-            const matches = searchIndex.filter(item =>
-                item.title.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q)
-            );
-
-            if (matches.length === 0) {
-                results.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:1rem;">No results found</p>';
-                return;
-            }
-
-            matches.slice(0, 6).forEach(match => {
-                const div = document.createElement('div');
-                div.className = 'search-result-item';
-                div.innerHTML = `<h4>${match.title}</h4><p>${match.desc}</p>`;
-                div.onclick = () => {
-                    showPage(match.page);
-                    toggleSearch();
-                    document.getElementById('searchInput').value = '';
-                    results.innerHTML = '';
-                };
-                results.appendChild(div);
-            });
-        }
-
-        // Close search with ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.getElementById('searchOverlay').classList.remove('show');
-                closeModalDirect();
-            }
-        });
-
-        // ==================== BACK TO TOP ====================
-        window.addEventListener('scroll', () => {
-            const btn = document.getElementById('backToTop');
-            if (window.scrollY > 400) {
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
-            }
-        });
-
-        // ==================== INTERSECTION OBSERVER FOR ANIMATIONS ====================
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'slideUp 0.5s ease forwards';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.editorial-card, .service-card, .portfolio-item, .review-card, .stat-item').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
+                <p>Our CNC machines carve intricate letters and logos from solid aluminum, acrylic, and HDU 
