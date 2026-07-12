@@ -297,78 +297,55 @@
             letter-spacing: 1px;
         }
 
-        /* NEW ADDITION: PAGE 4 - EDITORIALS & REVIEWS HUB */
+        /* PAGE 4 - EDITORIALS & REVIEWS HUB */
         .reviews-layout {
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 3rem;
         }
-
-        @media (max-width: 992px) {
-            .reviews-layout { grid-template-columns: 1fr; }
-        }
-
-        .editorial-stream, .user-reviews-stream {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .hub-card {
+        
+        .review-card {
             background-color: var(--bg-card);
             padding: 2rem;
             border-radius: 6px;
             border: 1px solid #232d3d;
+            margin-bottom: 1.5rem;
         }
-
-        .hub-card .meta {
-            font-size: 0.85rem;
+        
+        .stars {
             color: var(--accent-orange);
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .hub-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            color: var(--text-light);
-        }
-
-        .hub-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .star-rating {
-            color: var(--accent-orange);
-            font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
+    </style>
+</head>
+<body>
 
-        .reviewer-name {
-            font-weight: 700;
-            color: var(--text-light);
-            display: inline-block;
-            margin-right: 0.5rem;
-        }
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">Rest Ink <span>Signs</span></div>
+            <nav>
+                <ul>
+                    <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+                    <li><a onclick="showPage('services')" id="nav-services">Services</a></li>
+                    <li><a onclick="showPage('booking')" id="nav-booking">Order</a></li>
+                    <li><a onclick="showPage('reviews')" id="nav-reviews">Reviews</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        .verified-badge {
-            background-color: rgba(245, 158, 11, 0.1);
-            color: var(--accent-orange);
-            font-size: 0.75rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 3px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
+    <!-- Page 1: Home -->
+    <main id="home" class="page active-page">
+        <section class="hero">
+            <h1>High-Impact <span>Signage</span> & Custom Printing</h1>
+            <p>We craft premium 3D fabricated signs, displays, and commercial prints built to stand out and endure.</p>
+            <button class="btn" onclick="showPage('booking')">Get an Estimate</button>
+        </section>
 
-        /* Footer System */
-        footer {
-            text-align: center;
-            padding: 4rem 1rem;
-            margin-top: 6rem;
-            border-top: 1px solid #232d3d;
-            background-color: #080c12;
-            color: var(--text-muted);
+        <h2 class="section-title">Production <span>Editorials</span></h2>
+        <p class="subtitle">Insights into our fabrication and architectural design process</p>
+        
+        <div class="editorial-container">
+            <div class="editorial-card">
+                <h3>01 / Precision CNC Milling</h3>
