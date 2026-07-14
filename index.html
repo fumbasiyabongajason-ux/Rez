@@ -13,6 +13,7 @@
             --accent-orange-hover: #d97706;
             --accent-green: #22c55e;
             --accent-red: #ef4444;
+            --accent-blue: #3b82f6;
             --text-light: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: #232d3d;
@@ -24,7 +25,6 @@
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-dark); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
 
-        /* LIGHT THEME */
         body.light {
             --bg-dark: #f1f5f9;
             --bg-card: #ffffff;
@@ -42,7 +42,6 @@
             backdrop-filter: blur(12px);
             border-bottom: 2px solid var(--accent-orange);
         }
-
         body.light header { background-color: rgba(255,255,255,0.97); }
 
         .nav-container {
@@ -54,712 +53,361 @@
             padding: 1rem 2rem;
         }
 
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
+        .logo { font-size: 1.6rem; font-weight: 900; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
         .logo span { color: var(--accent-orange); }
 
         nav ul { display: flex; list-style: none; gap: 1.8rem; align-items: center; }
-
         nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: color var(--transition);
-            position: relative;
-            padding: 0.3rem 0;
+            color: var(--text-light); text-decoration: none; font-weight: 600; cursor: pointer;
+            transition: color var(--transition); position: relative; padding: 0.3rem 0;
         }
-
         nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px; left: 0;
-            width: 0; height: 2px;
-            background: var(--accent-orange);
-            transition: width var(--transition);
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+            background: var(--accent-orange); transition: width var(--transition);
         }
-
         nav a:hover::after, nav a.active::after { width: 100%; }
         nav a:hover, nav a.active { color: var(--accent-orange); }
 
         .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-            background: none;
-            border: none;
-            padding: 5px;
+            display: none; flex-direction: column; gap: 5px; cursor: pointer;
+            z-index: 1001; background: none; border: none; padding: 5px;
         }
-
-        .hamburger span {
-            width: 28px; height: 3px;
-            background: var(--text-light);
-            border-radius: 3px;
-            transition: all var(--transition);
-            display: block;
-        }
-
+        .hamburger span { width: 28px; height: 3px; background: var(--text-light); border-radius: 3px; transition: all var(--transition); display: block; }
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 
         .theme-toggle {
-            background: none;
-            border: 2px solid var(--border-color);
-            color: var(--text-light);
-            padding: 0.4rem 0.7rem;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: all var(--transition);
+            background: none; border: 2px solid var(--border-color); color: var(--text-light);
+            padding: 0.4rem 0.7rem; border-radius: 50%; cursor: pointer; font-size: 1.1rem; transition: all var(--transition);
         }
-
         .theme-toggle:hover { border-color: var(--accent-orange); color: var(--accent-orange); }
 
-        .page {
-            display: none;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem 5rem;
-        }
-
-        .page.active-page {
-            display: block;
-            animation: slideUp 0.5s ease-out forwards;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .page { display: none; max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+        .page.active-page { display: block; animation: slideUp 0.5s ease-out forwards; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .btn {
-            background-color: var(--accent-orange);
-            color: #0b0f17;
-            padding: 0.85rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-            display: inline-block;
+            background-color: var(--accent-orange); color: #0b0f17; padding: 0.85rem 2rem; border: none;
+            border-radius: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+            cursor: pointer; transition: all 0.2s ease; font-size: 0.95rem; display: inline-block;
         }
-
-        .btn:hover {
-            background-color: var(--accent-orange-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(245,158,11,0.3);
-        }
-
+        .btn:hover { background-color: var(--accent-orange-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,158,11,0.3); }
         .btn:active { transform: translateY(0); }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--accent-orange);
-            color: var(--accent-orange);
-        }
-
+        .btn-outline { background: transparent; border: 2px solid var(--accent-orange); color: var(--accent-orange); }
         .btn-outline:hover { background: var(--accent-orange); color: #0b0f17; }
         .btn-sm { padding: 0.55rem 1.2rem; font-size: 0.8rem; }
-
-        .btn-danger {
-            background: var(--accent-red);
-            color: white;
-        }
-
+        .btn-danger { background: var(--accent-red); color: white; }
         .btn-danger:hover { background: #dc2626; }
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: 800;
-        }
-
+        .section-title { font-size: 2.5rem; margin-bottom: 0.5rem; text-align: center; text-transform: uppercase; font-weight: 800; }
         .section-title span { color: var(--accent-orange); }
         .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 3rem; font-size: 1.1rem; }
 
         /* TOAST */
-        #toast-container {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
+        #toast-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.8rem; }
         .toast {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-orange);
-            color: var(--text-light);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            animation: toastIn 0.3s ease-out, toastOut 0.3s ease-in 2.7s forwards;
-            max-width: 320px;
+            background: var(--bg-card); border: 1px solid var(--border-color); border-left: 4px solid var(--accent-orange);
+            color: var(--text-light); padding: 1rem 1.5rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4); animation: toastIn 0.3s ease-out, toastOut 0.3s ease-in 2.7s forwards; max-width: 320px;
         }
-
         .toast.success { border-left-color: var(--accent-green); }
         .toast.error { border-left-color: var(--accent-red); }
-
         @keyframes toastIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes toastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(30px); } }
+        @keyframes toastOut { from { opacity: 1; } to { opacity: 0; transform: translateX(30px); } }
 
         /* MODAL */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            backdrop-filter: blur(4px);
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000;
+            align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(4px);
         }
-
         .modal-overlay.open { display: flex; }
-
         .modal {
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: modalIn 0.3s ease-out;
+            background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color);
+            max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; animation: modalIn 0.3s ease-out;
         }
-
         @keyframes modalIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-
         .modal-header {
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
         }
-
         .modal-header h2 { font-size: 1.3rem; color: var(--accent-orange); }
-
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color var(--transition);
-            line-height: 1;
-        }
-
+        .modal-close { background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; transition: color var(--transition); line-height: 1; }
         .modal-close:hover { color: var(--accent-red); }
         .modal-body { padding: 2rem; }
 
         /* HERO */
         .hero {
-            text-align: center;
-            padding: 5rem 2rem;
+            text-align: center; padding: 5rem 2rem;
             background: linear-gradient(180deg, #161c26 0%, #0b0f17 100%);
-            border-radius: 10px;
-            margin-bottom: 4rem;
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
+            border-radius: 10px; margin-bottom: 4rem; border: 1px solid var(--border-color);
+            position: relative; overflow: hidden;
         }
-
         .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: radial-gradient(circle at 30% 30%, rgba(245,158,11,0.05) 0%, transparent 50%);
             animation: heroGlow 8s ease-in-out infinite alternate;
         }
-
-        @keyframes heroGlow {
-            from { transform: translate(0, 0); }
-            to { transform: translate(5%, 5%); }
-        }
-
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            line-height: 1.15;
-            position: relative;
-        }
-
+        @keyframes heroGlow { from { transform: translate(0, 0); } to { transform: translate(5%, 5%); } }
+        .hero h1 { font-size: 3.2rem; font-weight: 900; margin-bottom: 1.5rem; line-height: 1.15; position: relative; }
         .hero h1 span { color: var(--accent-orange); }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            position: relative;
-        }
-
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 2.5rem; position: relative; }
         .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
 
         /* STATS */
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
+        .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 4rem; }
         .stat-item {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition);
+            background: var(--bg-card); padding: 2rem; border-radius: 8px; text-align: center;
+            border: 1px solid var(--border-color); transition: all var(--transition);
         }
-
         .stat-item:hover { border-color: var(--accent-orange); transform: translateY(-3px); }
         .stat-number { font-size: 2.5rem; font-weight: 900; color: var(--accent-orange); display: block; }
         .stat-label { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.3rem; }
 
         /* SHOWCASE */
-        .showcase-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
+        .showcase-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 4rem; }
         .showcase-card {
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-            background: var(--bg-card);
+            border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color);
+            transition: all 0.4s ease; cursor: pointer; position: relative; background: var(--bg-card);
         }
-
         .showcase-card:hover {
-            border-color: var(--accent-orange);
-            transform: translateY(-8px);
+            border-color: var(--accent-orange); transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(245,158,11,0.1);
         }
-
         .showcase-img-wrap {
-            width: 100%;
-            height: 280px;
-            overflow: hidden;
+            width: 100%; height: 280px; overflow: hidden;
             background: linear-gradient(135deg, #1a2332, #0d1117);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
+            display: flex; align-items: center; justify-content: center; font-size: 5rem;
         }
-
-        .showcase-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .showcase-card:hover .showcase-img { transform: scale(1.05); }
-
         .showcase-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
+            position: absolute; bottom: 0; left: 0; right: 0;
             background: linear-gradient(0deg, rgba(11,15,23,0.95) 0%, rgba(11,15,23,0.7) 50%, transparent 100%);
             padding: 2rem 1.5rem 1.5rem;
         }
-
         .showcase-badge {
-            display: inline-block;
-            background: var(--accent-orange);
-            color: #0b0f17;
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.6rem;
+            display: inline-block; background: var(--accent-orange); color: #0b0f17;
+            padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.7rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.6rem;
         }
-
         .showcase-overlay h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.3rem; color: #f8fafc; }
         .showcase-overlay p { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; }
 
         /* EDITORIAL */
-        .editorial-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
+        .editorial-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
         .editorial-card {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 8px;
-            border-top: 4px solid var(--accent-orange);
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
-            transition: all var(--transition);
-            cursor: pointer;
+            background: var(--bg-card); padding: 2.5rem; border-radius: 8px; border-top: 4px solid var(--accent-orange);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2); transition: all var(--transition); cursor: pointer;
         }
-
         .editorial-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
         .editorial-card h3 { margin-bottom: 1rem; font-size: 1.2rem; }
         .editorial-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.2rem; }
-
         .read-more {
-            color: var(--accent-orange);
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border: none;
-            background: none;
-            transition: all var(--transition);
+            color: var(--accent-orange); font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; border: none; background: none; transition: all var(--transition);
         }
-
         .read-more:hover { letter-spacing: 2px; }
 
+        /* REVIEWS / TESTIMONIALS */
+        .reviews-section { margin-bottom: 4rem; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .review-card {
+            background: var(--bg-card); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color);
+            transition: all var(--transition); position: relative;
+        }
+        .review-card:hover { border-color: var(--accent-orange); transform: translateY(-3px); }
+        .review-card::before {
+            content: '"'; position: absolute; top: 15px; right: 20px; font-size: 4rem;
+            color: var(--accent-orange); opacity: 0.15; font-family: Georgia, serif; line-height: 1;
+        }
+        .review-stars { color: var(--accent-orange); font-size: 1.1rem; margin-bottom: 0.8rem; letter-spacing: 2px; }
+        .review-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.2rem; font-style: italic; }
+        .review-author { display: flex; align-items: center; gap: 0.8rem; }
+        .review-avatar { font-size: 2rem; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; background: var(--bg-dark); border-radius: 50%; }
+        .review-name { font-weight: 700; font-size: 0.95rem; }
+        .review-role { color: var(--text-muted); font-size: 0.8rem; }
+
         /* SERVICES */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
         .service-card {
-            background: var(--bg-card);
-            padding: 2.5rem 2rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition);
-            cursor: pointer;
+            background: var(--bg-card); padding: 2.5rem 2rem; border-radius: 8px; text-align: center;
+            border: 1px solid var(--border-color); transition: all var(--transition); cursor: pointer;
         }
-
         .service-card:hover {
-            border-color: var(--accent-orange);
-            transform: translateY(-5px);
+            border-color: var(--accent-orange); transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(245,158,11,0.1);
         }
-
         .service-icon { font-size: 3rem; margin-bottom: 1.2rem; display: block; }
         .service-card h3 { margin-bottom: 0.8rem; font-size: 1.15rem; }
         .service-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
-
-        .price-tag {
-            font-size: 1.3rem;
-            font-weight: 900;
-            color: var(--accent-orange);
-            margin-bottom: 1.2rem;
-            display: block;
-        }
-
+        .price-tag { font-size: 1.3rem; font-weight: 900; color: var(--accent-orange); margin-bottom: 1.2rem; display: block; }
         .price-tag small { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; }
-
-        /* QUOTE FORM */
-        .quote-form-wrap {
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            max-width: 750px;
-            margin: 0 auto;
+        .service-tag {
+            display: inline-block; font-size: 0.65rem; background: var(--accent-orange); color: #0b0f17;
+            padding: 0.2rem 0.5rem; border-radius: 3px; vertical-align: middle; font-weight: 900; margin-left: 0.3rem;
         }
 
+        /* QUOTE / FORMS */
+        .quote-form-wrap {
+            background: var(--bg-card); padding: 3rem; border-radius: 12px;
+            border: 1px solid var(--border-color); max-width: 750px; margin: 0 auto;
+        }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: var(--text-muted); }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            background: var(--bg-dark);
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            padding: 0.85rem 1rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            transition: border-color var(--transition);
-            font-family: var(--font-main);
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-light);
+            padding: 0.85rem 1rem; border-radius: 6px; font-size: 0.95rem; transition: border-color var(--transition); font-family: var(--font-main);
         }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-orange);
-        }
-
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-orange); }
         .form-group textarea { resize: vertical; min-height: 120px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
         .form-error { color: var(--accent-red); font-size: 0.8rem; margin-top: 0.3rem; display: none; }
         .form-error.show { display: block; }
 
+        /* SEARCH */
+        .search-bar-wrap { display: flex; gap: 1rem; max-width: 600px; margin: 0 auto 2rem; }
+        .search-bar-wrap input {
+            flex: 1; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-light);
+            padding: 0.8rem 1.2rem; border-radius: 6px; font-size: 0.95rem; font-family: var(--font-main); transition: border-color var(--transition);
+        }
+        .search-bar-wrap input:focus { outline: none; border-color: var(--accent-orange); }
+
+        /* GALLERY */
+        .gallery-filters { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+        .filter-btn {
+            background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-muted);
+            padding: 0.5rem 1.2rem; border-radius: 25px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all var(--transition);
+        }
+        .filter-btn.active, .filter-btn:hover { background: var(--accent-orange); border-color: var(--accent-orange); color: #0b0f17; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .gallery-item {
+            border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color);
+            background: var(--bg-card); transition: all 0.4s ease; cursor: pointer;
+        }
+        .gallery-item:hover { transform: scale(1.02); border-color: var(--accent-orange); }
+        .gallery-thumb {
+            height: 220px; display: flex; align-items: center; justify-content: center; font-size: 4rem;
+            background: linear-gradient(135deg, #1a2332, #0d1117); transition: all 0.5s ease;
+        }
+        .gallery-item:hover .gallery-thumb { transform: scale(1.05); }
+        .gallery-info { padding: 1rem; }
+        .gallery-info h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .gallery-info p { font-size: 0.8rem; color: var(--text-muted); }
+        .gallery-tag {
+            display: inline-block; font-size: 0.7rem; background: rgba(245,158,11,0.15); color: var(--accent-orange);
+            padding: 0.2rem 0.6rem; border-radius: 3px; margin-top: 0.5rem; font-weight: 700;
+        }
+
         /* CART */
         .cart-container { display: grid; grid-template-columns: 1fr 360px; gap: 2rem; align-items: start; }
-
-        .cart-items-wrap {
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-        }
-
+        .cart-items-wrap { background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; }
         .cart-item {
-            display: grid;
-            grid-template-columns: 60px 1fr auto;
-            gap: 1rem;
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            align-items: center;
-            transition: background var(--transition);
+            display: grid; grid-template-columns: 60px 1fr auto; gap: 1rem; padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color); align-items: center; transition: background var(--transition);
         }
-
         .cart-item:hover { background: var(--bg-card-hover); }
         .cart-item:last-child { border-bottom: none; }
         .cart-item-icon { font-size: 2.5rem; text-align: center; }
         .cart-item-name { font-weight: 700; margin-bottom: 0.3rem; }
         .cart-item-detail { color: var(--text-muted); font-size: 0.85rem; }
-
-        .cart-item-actions {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 0.5rem;
-        }
-
+        .cart-item-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
         .cart-item-price { font-weight: 800; color: var(--accent-orange); font-size: 1.1rem; }
-
-        .qty-control {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--bg-dark);
-            border-radius: 6px;
-            padding: 0.2rem;
-        }
-
+        .qty-control { display: flex; align-items: center; gap: 0.5rem; background: var(--bg-dark); border-radius: 6px; padding: 0.2rem; }
         .qty-btn {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.2rem;
-            width: 28px; height: 28px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: none; border: none; color: var(--text-light); font-size: 1.2rem;
+            width: 28px; height: 28px; cursor: pointer; border-radius: 4px; transition: all var(--transition);
+            display: flex; align-items: center; justify-content: center;
         }
-
         .qty-btn:hover { background: var(--accent-orange); color: #0b0f17; }
         .qty-display { min-width: 30px; text-align: center; font-weight: 700; }
-
         .remove-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color var(--transition);
+            background: none; border: none; color: var(--text-muted); cursor: pointer;
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: color var(--transition);
         }
-
         .remove-btn:hover { color: var(--accent-red); }
-
         .cart-summary {
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            position: sticky;
-            top: 90px;
+            background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color);
+            padding: 2rem; position: sticky; top: 90px;
         }
-
         .cart-summary h3 { margin-bottom: 1.5rem; font-size: 1.2rem; }
         .summary-line { display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.95rem; color: var(--text-muted); }
-        .summary-total { display: flex; justify-content: space-between; padding-top: 1rem; border-top: 2px solid var(--border-color); font-weight: 800; font-size: 1.2rem; color: var(--text-light); margin-top: 0.5rem; }
+        .summary-total {
+            display: flex; justify-content: space-between; padding-top: 1rem; border-top: 2px solid var(--border-color);
+            font-weight: 800; font-size: 1.2rem; color: var(--text-light); margin-top: 0.5rem;
+        }
         .cart-empty { text-align: center; padding: 5rem 2rem; color: var(--text-muted); }
         .cart-empty .empty-icon { font-size: 5rem; margin-bottom: 1.5rem; }
-        .cart-badge { background: var(--accent-orange); color: #0b0f17; border-radius: 50%; width: 20px; height: 20px; font-size: 0.7rem; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; margin-left: 0.3rem; }
-
-        /* GALLERY */
-        .gallery-filters { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
-
-        .filter-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 0.5rem 1.2rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all var(--transition);
+        .cart-badge {
+            background: var(--accent-orange); color: #0b0f17; border-radius: 50%; width: 20px; height: 20px;
+            font-size: 0.7rem; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; margin-left: 0.3rem;
         }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--accent-orange);
-            border-color: var(--accent-orange);
-            color: #0b0f17;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .gallery-item:hover { transform: scale(1.02); border-color: var(--accent-orange); }
-
-        .gallery-thumb {
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            background: linear-gradient(135deg, #1a2332, #0d1117);
-            transition: all 0.5s ease;
-        }
-
-        .gallery-item:hover .gallery-thumb { transform: scale(1.05); }
-
-        .gallery-info { padding: 1rem; }
-        .gallery-info h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
-        .gallery-info p { font-size: 0.8rem; color: var(--text-muted); }
-        .gallery-tag { display: inline-block; font-size: 0.7rem; background: rgba(245,158,11,0.15); color: var(--accent-orange); padding: 0.2rem 0.6rem; border-radius: 3px; margin-top: 0.5rem; font-weight: 700; }
 
         /* ABOUT */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
         .about-text h2 { font-size: 2rem; font-weight: 900; margin-bottom: 1.5rem; }
         .about-text h2 span { color: var(--accent-orange); }
         .about-text p { color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.8; }
-        .about-visual { background: var(--bg-card); border-radius: 12px; padding: 3rem; text-align: center; border: 1px solid var(--border-color); }
+        .about-visual {
+            background: var(--bg-card); border-radius: 12px; padding: 3rem; text-align: center;
+            border: 1px solid var(--border-color);
+        }
         .about-visual .big-icon { font-size: 8rem; display: block; margin-bottom: 1.5rem; }
         .about-visual p { color: var(--text-muted); font-style: italic; }
-
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
-
         .team-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition);
+            background: var(--bg-card); border-radius: 12px; padding: 2rem; text-align: center;
+            border: 1px solid var(--border-color); transition: all var(--transition);
         }
-
         .team-card:hover { border-color: var(--accent-orange); transform: translateY(-5px); }
         .team-avatar { font-size: 4rem; margin-bottom: 1rem; display: block; }
         .team-card h4 { font-size: 1.05rem; margin-bottom: 0.3rem; }
-        .team-card p { color: var(--accent-orange); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .team-card .team-role { color: var(--accent-orange); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
         .team-card .team-bio { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.8rem; }
-
         .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
-
         .value-card {
-            background: var(--bg-card);
-            border-radius: 8px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            transition: all var(--transition);
+            background: var(--bg-card); border-radius: 8px; padding: 1.5rem;
+            border: 1px solid var(--border-color); transition: all var(--transition);
         }
-
         .value-card:hover { border-color: var(--accent-orange); }
-        .value-card .icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .value-card .v-icon { font-size: 2rem; margin-bottom: 0.8rem; }
         .value-card h4 { margin-bottom: 0.5rem; font-size: 1rem; }
         .value-card p { color: var(--text-muted); font-size: 0.85rem; }
 
+        /* ABOUT STATS */
+        .about-stats {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 4rem;
+        }
+        .about-stat-item {
+            background: var(--bg-card); padding: 2rem; border-radius: 8px; text-align: center;
+            border: 1px solid var(--border-color); transition: all var(--transition);
+        }
+        .about-stat-item:hover { border-color: var(--accent-orange); transform: translateY(-3px); }
+        .about-stat-number { font-size: 2.2rem; font-weight: 900; color: var(--accent-orange); display: block; }
+        .about-stat-label { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.3rem; }
+
         /* CONTACT */
         .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; }
-
         .contact-info-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
+            background: var(--bg-card); border-radius: 12px; padding: 2.5rem; border: 1px solid var(--border-color);
         }
-
         .contact-info-card h3 { margin-bottom: 2rem; font-size: 1.3rem; }
-
-        .contact-item {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.8rem;
-            align-items: flex-start;
-        }
-
+        .contact-item { display: flex; gap: 1rem; margin-bottom: 1.8rem; align-items: flex-start; }
         .contact-icon { font-size: 1.5rem; flex-shrink: 0; }
         .contact-label { font-size: 0.8rem; color: var(--accent-orange); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
         .contact-value { color: var(--text-light); font-weight: 600; }
         .contact-value a { color: var(--text-light); text-decoration: none; }
         .contact-value a:hover { color: var(--accent-orange); }
-
         .hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1rem; }
         .hours-day { color: var(--text-muted); font-size: 0.85rem; }
         .hours-time { color: var(--text-light); font-size: 0.85rem; font-weight: 600; }
-
         .contact-form-wrap {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
+            background: var(--bg-card); border-radius: 12px; padding: 2.5rem; border: 1px solid var(--border-color);
         }
-
         .contact-form-wrap h3 { margin-bottom: 2rem; font-size: 1.3rem; }
-
         .map-placeholder {
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            height: 250px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 2rem;
-            color: var(--text-muted);
-            gap: 1rem;
-            font-size: 0.9rem;
+            background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color);
+            height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            margin-top: 2rem; color: var(--text-muted); gap: 1rem; font-size: 0.9rem;
         }
-
         .map-placeholder .map-icon { font-size: 3rem; }
 
         /* TRACK ORDER */
@@ -768,7 +416,6 @@
         .track-form h3 { margin-bottom: 1.5rem; }
         .track-input-row { display: flex; gap: 1rem; }
         .track-input-row input { flex: 1; }
-
         .order-status-card { background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); padding: 2.5rem; }
         .order-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
         .order-id { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem; }
@@ -777,29 +424,14 @@
         .status-badge.in-progress { background: rgba(245,158,11,0.15); color: var(--accent-orange); }
         .status-badge.completed { background: rgba(34,197,94,0.15); color: var(--accent-green); }
         .status-badge.pending { background: rgba(148,163,184,0.15); color: var(--text-muted); }
-
         .progress-steps { position: relative; padding-left: 2rem; }
         .progress-steps::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border-color); }
-
-        .step {
-            position: relative;
-            padding: 0 0 2rem 1.5rem;
-        }
-
+        .step { position: relative; padding: 0 0 2rem 1.5rem; }
         .step:last-child { padding-bottom: 0; }
-
         .step::before {
-            content: '';
-            position: absolute;
-            left: -1.5rem;
-            top: 4px;
-            width: 18px; height: 18px;
-            border-radius: 50%;
-            background: var(--border-color);
-            border: 3px solid var(--bg-dark);
-            z-index: 1;
+            content: ''; position: absolute; left: -1.5rem; top: 4px;
+            width: 18px; height: 18px; border-radius: 50%; background: var(--border-color); border: 3px solid var(--bg-dark); z-index: 1;
         }
-
         .step.done::before { background: var(--accent-green); }
         .step.current::before { background: var(--accent-orange); box-shadow: 0 0 0 4px rgba(245,158,11,0.2); }
         .step-title { font-weight: 700; margin-bottom: 0.3rem; }
@@ -808,120 +440,56 @@
 
         /* FOOTER */
         footer {
-            background: var(--bg-card);
-            border-top: 1px solid var(--border-color);
-            padding: 3rem 2rem 1.5rem;
-            margin-top: auto;
+            background: var(--bg-card); border-top: 1px solid var(--border-color); padding: 3rem 2rem 1.5rem; margin-top: auto;
         }
-
         .footer-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 2rem;
+            max-width: 1200px; margin: 0 auto; display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 2rem;
         }
-
         .footer-brand p { color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem; line-height: 1.8; }
         .footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-orange); margin-bottom: 1rem; }
         .footer-col ul { list-style: none; }
         .footer-col ul li { margin-bottom: 0.6rem; }
         .footer-col ul a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; cursor: pointer; transition: color var(--transition); }
         .footer-col ul a:hover { color: var(--accent-orange); }
-        .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; color: var(--text-muted); font-size: 0.85rem; }
-
-        .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
-
-        .social-link {
-            width: 38px; height: 38px;
-            background: var(--bg-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all var(--transition);
-            text-decoration: none;
+        .footer-bottom {
+            max-width: 1200px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; color: var(--text-muted); font-size: 0.85rem;
         }
-
+        .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-link {
+            width: 38px; height: 38px; background: var(--bg-dark); border: 1px solid var(--border-color);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; cursor: pointer; transition: all var(--transition); text-decoration: none;
+        }
         .social-link:hover { border-color: var(--accent-orange); transform: translateY(-2px); }
 
-        /* SCROLL TO TOP */
         #scrollTop {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            background: var(--accent-orange);
-            color: #0b0f17;
-            border: none;
-            border-radius: 50%;
-            width: 45px; height: 45px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
-            transition: all var(--transition);
-            z-index: 999;
+            position: fixed; bottom: 2rem; left: 2rem; background: var(--accent-orange); color: #0b0f17;
+            border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 1.2rem; cursor: pointer;
+            display: none; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4); transition: all var(--transition); z-index: 999;
         }
-
         #scrollTop.visible { display: flex; }
         #scrollTop:hover { transform: translateY(-3px); }
 
-        /* SEARCH BAR */
-        .search-bar-wrap {
-            display: flex;
-            gap: 1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .search-bar-wrap input {
-            flex: 1;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            padding: 0.8rem 1.2rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-family: var(--font-main);
-            transition: border-color var(--transition);
-        }
-
-        .search-bar-wrap input:focus { outline: none; border-color: var(--accent-orange); }
-
         /* RESPONSIVE */
         @media (max-width: 900px) {
-            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .stats-bar, .about-stats { grid-template-columns: repeat(2, 1fr); }
             .showcase-gallery { grid-template-columns: repeat(2, 1fr); }
             .about-grid { grid-template-columns: 1fr; gap: 2rem; }
             .contact-grid { grid-template-columns: 1fr; }
             .cart-container { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
-
         @media (max-width: 768px) {
             nav ul {
-                display: none;
-                flex-direction: column;
-                position: fixed;
-                top: 0; right: 0;
-                width: 280px; height: 100vh;
-                background: rgba(22,28,38,0.98);
-                backdrop-filter: blur(20px);
-                padding: 5rem 2rem 2rem;
-                border-left: 1px solid var(--border-color);
-                gap: 1.5rem;
-                z-index: 1000;
+                display: none; flex-direction: column; position: fixed; top: 0; right: 0;
+                width: 280px; height: 100vh; background: rgba(22,28,38,0.98); backdrop-filter: blur(20px);
+                padding: 5rem 2rem 2rem; border-left: 1px solid var(--border-color); gap: 1.5rem; z-index: 1000;
             }
-
             nav ul.open { display: flex; }
             .hamburger { display: flex; }
-
             .hero h1 { font-size: 2.2rem; }
             .section-title { font-size: 1.8rem; }
             .showcase-gallery { grid-template-columns: 1fr; }
@@ -930,9 +498,8 @@
             .track-input-row { flex-direction: column; }
             .page { padding: 2rem 1rem 4rem; }
         }
-
         @media (max-width: 480px) {
-            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .stats-bar, .about-stats { grid-template-columns: repeat(2, 1fr); }
             .hero { padding: 3rem 1.5rem; }
             .hero h1 { font-size: 1.8rem; }
         }
@@ -940,10 +507,7 @@
 </head>
 <body>
 
-<!-- TOAST CONTAINER -->
 <div id="toast-container"></div>
-
-<!-- SCROLL TO TOP -->
 <button id="scrollTop" aria-label="Scroll to top">↑</button>
 
 <!-- MODAL -->
@@ -970,13 +534,11 @@
                 <li><a onclick="showPage('about')" data-page="about">About</a></li>
                 <li><a onclick="showPage('contact')" data-page="contact">Contact</a></li>
                 <li><a onclick="showPage('cart')" data-page="cart">Cart <span class="cart-badge" id="cart-count">0</span></a></li>
-                <li><a onclick="showPage('track')" data-page="track">Track Order</a></li>
+                <li><a onclick="showPage('track')" data-page="track">Track</a></li>
                 <li><button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button></li>
             </ul>
         </nav>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
 </header>
 
@@ -992,21 +554,21 @@
         </div>
     </div>
 
-    <div class="stats-bar">
+    <div class="stats-bar" id="home-stats">
         <div class="stat-item">
-            <span class="stat-number" data-target="500">0</span>
+            <span class="stat-number" id="stat-1">500+</span>
             <span class="stat-label">Projects Done</span>
         </div>
         <div class="stat-item">
-            <span class="stat-number" data-target="8">0</span>
+            <span class="stat-number" id="stat-2">8</span>
             <span class="stat-label">Years Experience</span>
         </div>
         <div class="stat-item">
-            <span class="stat-number" data-target="350">0</span>
+            <span class="stat-number" id="stat-3">350+</span>
             <span class="stat-label">Happy Clients</span>
         </div>
         <div class="stat-item">
-            <span class="stat-number" data-target="15">0</span>
+            <span class="stat-number" id="stat-4">15</span>
             <span class="stat-label">Service Types</span>
         </div>
     </div>
@@ -1015,7 +577,14 @@
     <p class="subtitle">A glimpse of what we create every day</p>
     <div class="showcase-gallery" id="showcase-gallery"></div>
 
-    <h2 class="section-title" style="margin-top:4rem;">Latest <span>Updates</span></h2>
+    <!-- CLIENT REVIEWS -->
+    <div class="reviews-section">
+        <h2 class="section-title">Client <span>Reviews</span></h2>
+        <p class="subtitle">What our customers say about our work</p>
+        <div class="reviews-grid" id="reviews-grid"></div>
+    </div>
+
+    <h2 class="section-title">Latest <span>Updates</span></h2>
     <p class="subtitle">News, tips and insights from our team</p>
     <div class="editorial-container" id="editorial-cards"></div>
 
@@ -1028,11 +597,9 @@
 <section class="page" id="page-services">
     <h1 class="section-title">Our <span>Services</span></h1>
     <p class="subtitle">Professional printing, signage, and fabrication solutions for every need</p>
-
     <div class="search-bar-wrap">
         <input type="text" id="service-search" placeholder="Search services..." oninput="filterServices(this.value)">
     </div>
-
     <div class="services-grid" id="services-grid"></div>
 </section>
 
@@ -1040,7 +607,6 @@
 <section class="page" id="page-gallery">
     <h1 class="section-title">Work <span>Gallery</span></h1>
     <p class="subtitle">Browse our portfolio of completed projects</p>
-
     <div class="gallery-filters" id="gallery-filters"></div>
     <div class="gallery-grid" id="gallery-grid"></div>
 </section>
@@ -1049,7 +615,6 @@
 <section class="page" id="page-quote">
     <h1 class="section-title">Get a <span>Free Quote</span></h1>
     <p class="subtitle">Fill in your details and we'll get back to you within 24 hours</p>
-
     <div class="quote-form-wrap">
         <form id="quote-form" onsubmit="submitQuote(event)" novalidate>
             <div class="form-row">
@@ -1138,67 +703,96 @@
         </div>
     </div>
 
+    <!-- ABOUT PAGE STATS - HARDCODED -->
+    <h2 class="section-title">By The <span>Numbers</span></h2>
+    <p class="subtitle">Our track record speaks for itself</p>
+    <div class="about-stats" id="about-stats-grid">
+        <div class="about-stat-item">
+            <span class="about-stat-number">500+</span>
+            <span class="about-stat-label">Projects Completed</span>
+        </div>
+        <div class="about-stat-item">
+            <span class="about-stat-number">8</span>
+            <span class="about-stat-label">Years in Business</span>
+        </div>
+        <div class="about-stat-item">
+            <span class="about-stat-number">350+</span>
+            <span class="about-stat-label">Happy Clients</span>
+        </div>
+        <div class="about-stat-item">
+            <span class="about-stat-number">4.9 ★</span>
+            <span class="about-stat-label">Avg. Rating</span>
+        </div>
+    </div>
+
     <h2 class="section-title">Meet the <span>Team</span></h2>
     <p class="subtitle">The talented people behind every great project</p>
     <div class="team-grid">
         <div class="team-card">
             <span class="team-avatar">👨‍💼</span>
             <h4>Tafadzwa Moyo</h4>
-            <p>Founder & CEO</p>
+            <p class="team-role">Founder & CEO</p>
             <p class="team-bio">15 years in the print industry. Tafadzwa founded Rest Ink Signs with a vision to bring world-class printing to Zimbabwe.</p>
         </div>
         <div class="team-card">
             <span class="team-avatar">👩‍🎨</span>
             <h4>Rudo Chikwanda</h4>
-            <p>Lead Designer</p>
+            <p class="team-role">Lead Designer</p>
             <p class="team-bio">Award-winning graphic designer with a passion for typography and brand identity. Rudo ensures every design pops.</p>
         </div>
         <div class="team-card">
             <span class="team-avatar">👨‍🔧</span>
             <h4>Simba Dube</h4>
-            <p>Production Manager</p>
+            <p class="team-role">Production Manager</p>
             <p class="team-bio">Simba oversees all production processes, ensuring quality control and timely delivery on every order.</p>
         </div>
         <div class="team-card">
             <span class="team-avatar">👩‍💻</span>
             <h4>Chiedza Mhuru</h4>
-            <p>Client Relations</p>
+            <p class="team-role">Client Relations</p>
             <p class="team-bio">Chiedza is your first point of contact. She ensures every client experience is smooth, friendly and professional.</p>
         </div>
     </div>
 
-    <h2 class="section-title">Our <span>Values</span></h2>
-    <p class="subtitle">The principles that guide everything we do</p>
-    <div class="values-grid">
-        <div class="value-card">
-            <div class="icon">🎯</div>
-            <h4>Precision</h4>
-            <p>Every millimeter matters. We use industry-leading equipment to deliver accurate, consistent results every time.</p>
-        </div>
-        <div class="value-card">
-            <div class="icon">⚡</div>
-            <h4>Speed</h4>
-            <p>Fast turnaround without compromising quality. We understand deadlines and we meet them.</p>
-        </div>
-        <div class="value-card">
-            <div class="icon">💎</div>
-            <h4>Quality</h4>
-            <p>We use only premium materials and inks. Your investment deserves products that last and impress.</p>
-        </div>
-        <div class="value-card">
-            <div class="icon">🤝</div>
-            <h4>Trust</h4>
-            <p>Transparent pricing, honest communication, and reliable service. We build long-term partnerships.</p>
-        </div>
-        <div class="value-card">
-            <div class="icon">🌍</div>
-            <h4>Community</h4>
-            <p>Proudly Zimbabwean. We support local businesses and contribute to our community's growth.</p>
-        </div>
-        <div class="value-card">
-            <div class="icon">🚀</div>
-            <h4>Innovation</h4>
-            <p>We stay ahead of industry trends, investing in new technologies to offer cutting-edge solutions.</p>
+    <!-- ABOUT PAGE REVIEWS -->
+    <h2 class="section-title">Client <span>Testimonials</span></h2>
+    <p class="subtitle">Real feedback from real clients</p>
+    <div class="reviews-grid" id="about-reviews-grid"></div>
+
+    <div style="margin-top:4rem;">
+        <h2 class="section-title">Our <span>Values</span></h2>
+        <p class="subtitle">The principles that guide everything we do</p>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="v-icon">🎯</div>
+                <h4>Precision</h4>
+                <p>Every millimeter matters. We use industry-leading equipment to deliver accurate, consistent results every time.</p>
+            </div>
+            <div class="value-card">
+                <div class="v-icon">⚡</div>
+                <h4>Speed</h4>
+                <p>Fast turnaround without compromising quality. We understand deadlines and we meet them.</p>
+            </div>
+            <div class="value-card">
+                <div class="v-icon">💎</div>
+                <h4>Quality</h4>
+                <p>We use only premium materials and inks. Your investment deserves products that last and impress.</p>
+            </div>
+            <div class="value-card">
+                <div class="v-icon">🤝</div>
+                <h4>Trust</h4>
+                <p>Transparent pricing, honest communication, and reliable service. We build long-term partnerships.</p>
+            </div>
+            <div class="value-card">
+                <div class="v-icon">🌍</div>
+                <h4>Community</h4>
+                <p>Proudly Zimbabwean. We support local businesses and contribute to our community's growth.</p>
+            </div>
+            <div class="value-card">
+                <div class="v-icon">🚀</div>
+                <h4>Innovation</h4>
+                <p>We stay ahead of industry trends, investing in new technologies to offer cutting-edge solutions.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -1207,7 +801,6 @@
 <section class="page" id="page-contact">
     <h1 class="section-title">Get In <span>Touch</span></h1>
     <p class="subtitle">We'd love to hear from you — let's create something great together</p>
-
     <div class="contact-grid">
         <div>
             <div class="contact-info-card">
@@ -1249,16 +842,12 @@
                 <div>
                     <div class="contact-label" style="margin-bottom:0.8rem;">Business Hours</div>
                     <div class="hours-grid">
-                        <span class="hours-day">Mon – Fri</span>
-                        <span class="hours-time">8:00 AM – 5:30 PM</span>
-                        <span class="hours-day">Saturday</span>
-                        <span class="hours-time">8:00 AM – 1:00 PM</span>
-                        <span class="hours-day">Sunday</span>
-                        <span class="hours-time">Closed</span>
+                        <span class="hours-day">Mon – Fri</span><span class="hours-time">8:00 AM – 5:30 PM</span>
+                        <span class="hours-day">Saturday</span><span class="hours-time">8:00 AM – 1:00 PM</span>
+                        <span class="hours-day">Sunday</span><span class="hours-time">Closed</span>
                     </div>
                 </div>
             </div>
-
             <div class="map-placeholder">
                 <span class="map-icon">🗺️</span>
                 <strong>Find Us on the Map</strong>
@@ -1266,7 +855,6 @@
                 <button class="btn btn-sm btn-outline" onclick="window.open('https://maps.google.com?q=Harare+Zimbabwe','_blank')">Open in Google Maps</button>
             </div>
         </div>
-
         <div class="contact-form-wrap">
             <h3>Send Us a Message</h3>
             <form id="contact-form" onsubmit="submitContact(event)" novalidate>
@@ -1309,15 +897,17 @@
 <section class="page" id="page-track">
     <h1 class="section-title">Track Your <span>Order</span></h1>
     <p class="subtitle">Enter your order reference number to check your job status</p>
-
     <div class="track-container">
         <div class="track-form">
             <h3>Order Lookup</h3>
             <div class="track-input-row">
-                <input type="text" id="track-input" placeholder="e.g. RI-2024-001" style="background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-light); padding:0.85rem 1rem; border-radius:6px; font-size:0.95rem; font-family:var(--font-main);">
+                <input type="text" id="track-input" placeholder="e.g. RI-2024-001"
+                    style="background:var(--bg-dark); border:1px solid var(--border-color); color:var(--text-light); padding:0.85rem 1rem; border-radius:6px; font-size:0.95rem; font-family:var(--font-main);">
                 <button class="btn" onclick="trackOrder()">Track Order</button>
             </div>
-            <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.8rem;">Demo: try <strong>RI-2024-001</strong>, <strong>RI-2024-002</strong>, or <strong>RI-2024-003</strong></p>
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.8rem;">
+                Demo: try <strong>RI-2024-001</strong>, <strong>RI-2024-002</strong>, or <strong>RI-2024-003</strong>
+            </p>
         </div>
         <div id="track-result"></div>
     </div>
@@ -1373,228 +963,487 @@
 </footer>
 
 <script>
-    // ============================================================
-    // DATA
-    // ============================================================
-    const services = [
-        { id: 1, icon: '🖨️', name: 'Digital Printing', desc: 'High-resolution full-color printing on paper, canvas, vinyl, and more. Perfect for posters, flyers, and banners.', price: 'From $5', tag: 'Popular' },
-        { id: 2, icon: '✂️', name: 'Vinyl Cutting & Wrapping', desc: 'Precision-cut vinyl lettering, vehicle wraps, and window graphics. Durable, vibrant, and weatherproof.', price: 'From $15', tag: '' },
-        { id: 3, icon: '🔲', name: '3D Signage Fabrication', desc: 'Custom 3D letters, logos, and signs in acrylic, foam, metal, and PVC. Make your brand unmissable.', price: 'From $50', tag: 'Premium' },
-        { id: 4, icon: '💡', name: 'LED Illuminated Signs', desc: 'Eye-catching illuminated signs that work day and night. Channel letters, light boxes, and neon-effect displays.', price: 'From $120', tag: 'Premium' },
-        { id: 5, icon: '🚗', name: 'Vehicle Branding', desc: 'Transform your vehicles into moving billboards. Full wraps, partial wraps, and fleet branding solutions.', price: 'From $80', tag: 'Popular' },
-        { id: 6, icon: '🎪', name: 'Banners & Flex', desc: 'Large format banners for events, trade shows, and outdoor advertising. Weatherproof and long-lasting.', price: 'From $12', tag: '' },
-        { id: 7, icon: '👕', name: 'Branded Merchandise', desc: 'Custom branded pens, mugs, t-shirts, caps, USB drives, and more. Perfect for corporate gifts and promotions.', price: 'From $3', tag: 'New' },
-        { id: 8, icon: '🏗️', name: 'Exhibition Displays', desc: 'Professional pop-up displays, roll-up banners, and exhibition stands. Command attention at any event.', price: 'From $65', tag: '' },
-        { id: 9, icon: '🪟', name: 'Window Graphics', desc: 'Frosted, etched, and printed window films. Add privacy, branding, or decoration to any glass surface.', price: 'From $20', tag: '' },
-        { id: 10, icon: '📋', name: 'Office & Wall Signage', desc: 'Directional signs, reception boards, wall murals, and wayfinding systems for offices and buildings.', price: 'From $30', tag: '' },
-        { id: 11, icon: '🪧', name: 'Real Estate Signs', desc: 'Durable "For Sale", "To Let", and agency branding boards. Weather-resistant and professionally finished.', price: 'From $18', tag: '' },
-        { id: 12, icon: '🎁', name: 'Event Printing', desc: 'Invitations, programs, menus, tickets, lanyards, and all event print collateral handled under one roof.', price: 'From $8', tag: 'New' },
-    ];
+// ============================================================
+// DATA
+// ============================================================
+const services = [
+    { id: 1, icon: '🖨️', name: 'Digital Printing', desc: 'High-resolution full-color printing on paper, canvas, vinyl, and more. Perfect for posters, flyers, and banners.', price: 'From $5', tag: 'Popular' },
+    { id: 2, icon: '✂️', name: 'Vinyl Cutting & Wrapping', desc: 'Precision-cut vinyl lettering, vehicle wraps, and window graphics. Durable, vibrant, and weatherproof.', price: 'From $15', tag: '' },
+    { id: 3, icon: '🔲', name: '3D Signage Fabrication', desc: 'Custom 3D letters, logos, and signs in acrylic, foam, metal, and PVC. Make your brand unmissable.', price: 'From $50', tag: 'Premium' },
+    { id: 4, icon: '💡', name: 'LED Illuminated Signs', desc: 'Eye-catching illuminated signs that work day and night. Channel letters, light boxes, and neon-effect displays.', price: 'From $120', tag: 'Premium' },
+    { id: 5, icon: '🚗', name: 'Vehicle Branding', desc: 'Transform your vehicles into moving billboards. Full wraps, partial wraps, and fleet branding solutions.', price: 'From $80', tag: 'Popular' },
+    { id: 6, icon: '🎪', name: 'Banners & Flex', desc: 'Large format banners for events, trade shows, and outdoor advertising. Weatherproof and long-lasting.', price: 'From $12', tag: '' },
+    { id: 7, icon: '👕', name: 'Branded Merchandise', desc: 'Custom branded pens, mugs, t-shirts, caps, USB drives, and more. Perfect for corporate gifts and promotions.', price: 'From $3', tag: 'New' },
+    { id: 8, icon: '🏗️', name: 'Exhibition Displays', desc: 'Professional pop-up displays, roll-up banners, and exhibition stands. Command attention at any event.', price: 'From $65', tag: '' },
+    { id: 9, icon: '🪟', name: 'Window Graphics', desc: 'Frosted, etched, and printed window films. Add privacy, branding, or decoration to any glass surface.', price: 'From $20', tag: '' },
+    { id: 10, icon: '📋', name: 'Office & Wall Signage', desc: 'Directional signs, reception boards, wall murals, and wayfinding systems for offices and buildings.', price: 'From $30', tag: '' },
+    { id: 11, icon: '🪧', name: 'Real Estate Signs', desc: 'Durable "For Sale", "To Let", and agency branding boards. Weather-resistant and professionally finished.', price: 'From $18', tag: '' },
+    { id: 12, icon: '🎁', name: 'Event Printing', desc: 'Invitations, programs, menus, tickets, lanyards, and all event print collateral handled under one roof.', price: 'From $8', tag: 'New' },
+];
 
-    const galleryItems = [
-        { id: 1, icon: '🏪', name: 'Supermarket Fascia Sign', category: '3D Signs', tag: '3D Fabrication' },
-        { id: 2, icon: '🚐', name: 'Minibus Full Wrap', category: 'Vehicle Branding', tag: 'Vehicle Wrap' },
-        { id: 3, icon: '🏢', name: 'Corporate Reception Board', category: 'Office Signs', tag: 'Office Signage' },
-        { id: 4, icon: '🎪', name: 'Trade Show Display', category: 'Exhibitions', tag: 'Exhibition' },
-        { id: 5, icon: '💡', name: 'Restaurant LED Sign', category: 'LED Signs', tag: 'LED Illuminated' },
-        { id: 6, icon: '👕', name: 'Staff Uniform Printing', category: 'Merchandise', tag: 'Merchandise' },
-        { id: 7, icon: '🪟', name: 'Office Window Graphics', category: 'Window Graphics', tag: 'Window Film' },
-        { id: 8, icon: '🎯', name: 'Outdoor Billboard', category: 'Banners', tag: 'Large Format' },
-        { id: 9, icon: '🏗️', name: 'Hotel Directional Signs', category: 'Office Signs', tag: 'Wayfinding' },
-        { id: 10, icon: '🚗', name: 'Car Dealership Branding', category: 'Vehicle Branding', tag: 'Fleet Branding' },
-        { id: 11, icon: '🔲', name: '3D Acrylic Logo Wall', category: '3D Signs', tag: '3D Fabrication' },
-        { id: 12, icon: '🎁', name: 'Corporate Gift Set', category: 'Merchandise', tag: 'Branded Merch' },
-    ];
+const galleryItems = [
+    { id: 1, icon: '🏪', name: 'Supermarket Fascia Sign', category: '3D Signs', tag: '3D Fabrication' },
+    { id: 2, icon: '🚐', name: 'Minibus Full Wrap', category: 'Vehicle Branding', tag: 'Vehicle Wrap' },
+    { id: 3, icon: '🏢', name: 'Corporate Reception Board', category: 'Office Signs', tag: 'Office Signage' },
+    { id: 4, icon: '🎪', name: 'Trade Show Display', category: 'Exhibitions', tag: 'Exhibition' },
+    { id: 5, icon: '💡', name: 'Restaurant LED Sign', category: 'LED Signs', tag: 'LED Illuminated' },
+    { id: 6, icon: '👕', name: 'Staff Uniform Printing', category: 'Merchandise', tag: 'Merchandise' },
+    { id: 7, icon: '🪟', name: 'Office Window Graphics', category: 'Window Graphics', tag: 'Window Film' },
+    { id: 8, icon: '🎯', name: 'Outdoor Billboard', category: 'Banners', tag: 'Large Format' },
+    { id: 9, icon: '🏗️', name: 'Hotel Directional Signs', category: 'Office Signs', tag: 'Wayfinding' },
+    { id: 10, icon: '🚗', name: 'Car Dealership Branding', category: 'Vehicle Branding', tag: 'Fleet Branding' },
+    { id: 11, icon: '🔲', name: '3D Acrylic Logo Wall', category: '3D Signs', tag: '3D Fabrication' },
+    { id: 12, icon: '🎁', name: 'Corporate Gift Set', category: 'Merchandise', tag: 'Branded Merch' },
+];
 
-    const showcaseItems = [
-        { icon: '🏪', badge: 'Signage', title: 'Retail Store Fascia', desc: 'Full 3D fabricated storefront sign with LED backlit lettering for a major supermarket chain.' },
-        { icon: '🚗', badge: 'Vehicle Wrap', title: 'Fleet Branding', desc: 'Complete fleet of 12 delivery trucks branded in vibrant full-color wrap vinyl.' },
-        { icon: '💡', badge: 'LED Signs', title: 'Restaurant Illuminated Sign', desc: 'Custom channel letter LED sign installed above restaurant entrance. Visible day and night.' },
-    ];
+const showcaseItems = [
+    { icon: '🏪', badge: 'Signage', title: 'Retail Store Fascia', desc: 'Full 3D fabricated storefront sign with LED backlit lettering for a major supermarket chain.' },
+    { icon: '🚗', badge: 'Vehicle Wrap', title: 'Fleet Branding', desc: 'Complete fleet of 12 delivery trucks branded in vibrant full-color wrap vinyl.' },
+    { icon: '💡', badge: 'LED Signs', title: 'Restaurant Illuminated Sign', desc: 'Custom channel letter LED sign installed above restaurant entrance. Visible day and night.' },
+];
 
-    const editorials = [
-        { title: '5 Ways Great Signage Grows Your Business', excerpt: 'Your signage is often the first impression customers have of your brand. Discover how investing in quality signs directly impacts foot traffic and sales.', tag: 'Business Tips', content: 'Great signage does more than just display your name. It communicates your brand values, guides customers, and creates memorable first impressions. Studies show that 76% of consumers have entered a store they had never visited before based solely on its signage. Invest in quality signs and watch your business grow.' },
-        { title: 'Vinyl vs. 3D Signs: Which is Right for You?', excerpt: 'Not sure whether to go with a flat vinyl sign or a premium 3D fabricated option? We break down the pros, cons, and costs of each.', tag: 'Guide', content: 'Vinyl signs offer excellent value for money and are perfect for temporary displays, window graphics, and vehicle branding. 3D fabricated signs, on the other hand, provide a premium look that commands attention. The choice depends on your budget, timeline, and the impression you want to make.' },
-        { title: 'How to Prepare Your Artwork for Printing', excerpt: 'Sending the wrong file format can delay your order and affect quality. Here\'s our complete guide to file setup, resolution, and colour profiles.', tag: 'Design Guide', content: 'For best print results, always supply artwork in PDF, AI, or EPS format with a minimum resolution of 300 DPI. Ensure all fonts are converted to outlines or embedded, and use CMYK colour mode rather than RGB. Include a 3mm bleed around all edges and keep important content 5mm from the trim edge.' },
-    ];
+const reviews = [
+    { name: 'Maria Ncube', role: 'Owner, Maria\'s Boutique', avatar: '👩‍💼', stars: 5, text: 'Rest Ink Signs did an incredible job on our storefront signage. The 3D letters look stunning and we\'ve had so many compliments from customers. Highly recommend!' },
+    { name: 'James Chikowore', role: 'Marketing Director, ZimTech', avatar: '👨‍💻', stars: 5, text: 'We branded our entire fleet of 8 vehicles with Rest Ink. The quality is outstanding, even after 2 years in the sun the colours are still vibrant. Professional service from start to finish.' },
+    { name: 'Sandra Mutasa', role: 'Event Coordinator, Harare Events Co.', avatar: '👩‍🎤', stars: 5, text: 'They printed all our banners, lanyards, and exhibition materials for the Zimbabwe Trade Fair. Everything was delivered on time and looked fantastic. Will definitely use again!' },
+    { name: 'Peter Moyo', role: 'Restaurant Owner, Flame Grill', avatar: '👨‍🍳', stars: 5, text: 'Our LED sign from Rest Ink Signs is the best investment we\'ve made. It attracts customers even at night. The team was very helpful and the installation was seamless.' },
+    { name: 'Tendai Maposa', role: 'CEO, TM Construction', avatar: '👷', stars: 4, text: 'Great quality safety signage for all our construction sites. They understood our requirements perfectly and delivered ahead of schedule. Very impressed with the durability.' },
+    { name: 'Grace Zimba', role: 'HR Manager, Pioneer Insurance', avatar: '👩‍💼', stars: 5, text: 'We ordered branded merchandise for our company anniversary — pens, mugs, t-shirts, and bags. Everything was perfect. Our staff loved the gifts. Rest Ink really delivers quality.' },
+];
 
-    const orders = {
-        'RI-2024-001': {
-            name: 'Restaurant LED Signage',
-            client: 'Pizza Palace Harare',
-            status: 'in-progress',
-            statusLabel: 'In Progress',
-            steps: [
-                { title: 'Order Received', desc: 'Your order has been confirmed and payment processed.', time: 'Mon 15 Jan, 9:00 AM', done: true },
-                { title: 'Design Approval', desc: 'Artwork signed off by client. Ready for production.', time: 'Mon 15 Jan, 2:30 PM', done: true },
-                { title: 'In Production', desc: 'Your signage is currently being fabricated in our workshop.', time: 'Tue 16 Jan, 8:00 AM', current: true },
-                { title: 'Quality Check', desc: 'Final inspection before delivery.', time: 'Expected: Wed 17 Jan', done: false },
-                { title: 'Ready for Collection / Delivery', desc: 'Your order is on its way!', time: 'Expected: Thu 18 Jan', done: false },
-            ]
-        },
-        'RI-2024-002': {
-            name: 'Fleet Vehicle Branding',
-            client: 'Zim Logistics Ltd',
-            status: 'completed',
-            statusLabel: 'Completed',
-            steps: [
-                { title: 'Order Received', desc: 'Order confirmed.', time: 'Mon 8 Jan, 10:00 AM', done: true },
-                { title: 'Design Approval', desc: 'All designs approved.', time: 'Tue 9 Jan, 11:00 AM', done: true },
-                { title: 'In Production', desc: 'Vinyl printing and cutting completed.', time: 'Wed 10 Jan', done: true },
-                { title: 'Quality Check', desc: 'All 8 vehicles inspected and approved.', time: 'Fri 12 Jan', done: true },
-                { title: 'Completed & Delivered', desc: 'All vehicles collected by client.', time: 'Fri 12 Jan, 3:00 PM', done: true },
-            ]
-        },
-        'RI-2024-003': {
-            name: 'Office Signage Package',
-            client: 'Tech Hub Zimbabwe',
-            status: 'pending',
-            statusLabel: 'Pending Design Approval',
-            steps: [
-                { title: 'Order Received', desc: 'Order placed and confirmed.', time: 'Wed 17 Jan, 2:00 PM', done: true },
-                { title: 'Design Approval', desc: 'Awaiting client sign-off on artwork.', time: 'Pending', current: true },
-                { title: 'In Production', desc: 'Awaiting design approval.', time: 'TBD', done: false },
-                { title: 'Quality Check', desc: 'TBD', time: 'TBD', done: false },
-                { title: 'Ready for Collection', desc: 'TBD', time: 'TBD', done: false },
-            ]
-        }
-    };
+const editorials = [
+    { title: '5 Ways Great Signage Grows Your Business', excerpt: 'Your signage is often the first impression customers have of your brand. Discover how investing in quality signs directly impacts foot traffic and sales.', tag: 'Business Tips', content: 'Great signage does more than just display your name. It communicates your brand values, guides customers, and creates memorable first impressions. Studies show that 76% of consumers have entered a store they had never visited before based solely on its signage. Here are 5 ways great signage grows your business: 1) Increases visibility and foot traffic. 2) Builds brand recognition over time. 3) Creates a professional image that builds trust. 4) Serves as 24/7 advertising. 5) Differentiates you from competitors. Invest in quality signs and watch your business grow.' },
+    { title: 'Vinyl vs. 3D Signs: Which is Right for You?', excerpt: 'Not sure whether to go with a flat vinyl sign or a premium 3D fabricated option? We break down the pros, cons, and costs of each.', tag: 'Guide', content: 'Vinyl signs offer excellent value for money and are perfect for temporary displays, window graphics, and vehicle branding. They can be produced quickly and are easy to replace. 3D fabricated signs, on the other hand, provide a premium look that commands attention and is ideal for permanent installations. The choice depends on your budget, timeline, and the impression you want to make. At Rest Ink Signs, we help you choose the best option for your specific needs.' },
+    { title: 'How to Prepare Your Artwork for Printing', excerpt: 'Sending the wrong file format can delay your order and affect quality. Here\'s our complete guide to file setup, resolution, and colour profiles.', tag: 'Design Guide', content: 'For best print results, always supply artwork in PDF, AI, or EPS format with a minimum resolution of 300 DPI. Ensure all fonts are converted to outlines or embedded, and use CMYK colour mode rather than RGB. Include a 3mm bleed around all edges and keep important content 5mm from the trim edge. If you\'re unsure about any of this, our design team can help prepare your files at no extra charge.' },
+];
 
-    // ============================================================
-    // CART STATE
-    // ============================================================
-    let cart = JSON.parse(localStorage.getItem('ris_cart') || '[]');
+const orders = {
+    'RI-2024-001': {
+        name: 'Restaurant LED Signage', client: 'Pizza Palace Harare', status: 'in-progress', statusLabel: 'In Progress',
+        steps: [
+            { title: 'Order Received', desc: 'Your order has been confirmed and payment processed.', time: 'Mon 15 Jan, 9:00 AM', done: true },
+            { title: 'Design Approval', desc: 'Artwork signed off by client. Ready for production.', time: 'Mon 15 Jan, 2:30 PM', done: true },
+            { title: 'In Production', desc: 'Your signage is currently being fabricated in our workshop.', time: 'Tue 16 Jan, 8:00 AM', current: true },
+            { title: 'Quality Check', desc: 'Final inspection before delivery.', time: 'Expected: Wed 17 Jan', done: false },
+            { title: 'Ready for Collection / Delivery', desc: 'Your order is on its way!', time: 'Expected: Thu 18 Jan', done: false },
+        ]
+    },
+    'RI-2024-002': {
+        name: 'Fleet Vehicle Branding', client: 'Zim Logistics Ltd', status: 'completed', statusLabel: 'Completed',
+        steps: [
+            { title: 'Order Received', desc: 'Order confirmed.', time: 'Mon 8 Jan, 10:00 AM', done: true },
+            { title: 'Design Approval', desc: 'All designs approved.', time: 'Tue 9 Jan, 11:00 AM', done: true },
+            { title: 'In Production', desc: 'Vinyl printing and cutting completed.', time: 'Wed 10 Jan', done: true },
+            { title: 'Quality Check', desc: 'All 8 vehicles inspected and approved.', time: 'Fri 12 Jan', done: true },
+            { title: 'Completed & Delivered', desc: 'All vehicles collected by client.', time: 'Fri 12 Jan, 3:00 PM', done: true },
+        ]
+    },
+    'RI-2024-003': {
+        name: 'Office Signage Package', client: 'Tech Hub Zimbabwe', status: 'pending', statusLabel: 'Pending Design Approval',
+        steps: [
+            { title: 'Order Received', desc: 'Order placed and confirmed.', time: 'Wed 17 Jan, 2:00 PM', done: true },
+            { title: 'Design Approval', desc: 'Awaiting client sign-off on artwork.', time: 'Pending', current: true },
+            { title: 'In Production', desc: 'Awaiting design approval.', time: 'TBD', done: false },
+            { title: 'Quality Check', desc: 'TBD', time: 'TBD', done: false },
+            { title: 'Ready for Collection', desc: 'TBD', time: 'TBD', done: false },
+        ]
+    }
+};
 
-    function saveCart() {
-        localStorage.setItem('ris_cart', JSON.stringify(cart));
-        updateCartBadge();
+// ============================================================
+// CART STATE
+// ============================================================
+let cart = JSON.parse(localStorage.getItem('ris_cart') || '[]');
+
+function saveCart() { localStorage.setItem('ris_cart', JSON.stringify(cart)); updateCartBadge(); }
+function updateCartBadge() {
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cart-count').textContent = total;
+}
+
+function addToCart(serviceId) {
+    const service = services.find(s => s.id === serviceId);
+    if (!service) return;
+    const existing = cart.find(i => i.id === serviceId);
+    if (existing) { existing.qty++; }
+    else { cart.push({ id: service.id, icon: service.icon, name: service.name, price: service.price, qty: 1 }); }
+    saveCart();
+    showToast(service.name + ' added to cart! 🛒', 'success');
+}
+
+function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); renderCart(); showToast('Item removed from cart.', 'error'); }
+
+function updateQty(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+    item.qty = Math.max(1, item.qty + delta);
+    saveCart(); renderCart();
+}
+
+function renderCart() {
+    const wrap = document.getElementById('cart-content');
+    if (!wrap) return;
+    if (cart.length === 0) {
+        wrap.innerHTML = '<div class="cart-empty"><div class="empty-icon">🛒</div><h3 style="margin-bottom:1rem;">Your cart is empty</h3><p style="margin-bottom:2rem;">Browse our services and add items to get a quote.</p><button class="btn" onclick="showPage(\'services\')">Browse Services</button></div>';
+        return;
+    }
+    const subtotal = cart.reduce((s, i) => { const p = parseFloat(i.price.replace(/[^0-9.]/g,''))||0; return s + p * i.qty; }, 0);
+    const itemsHTML = cart.map(item => '<div class="cart-item"><div class="cart-item-icon">'+item.icon+'</div><div><div class="cart-item-name">'+item.name+'</div><div class="cart-item-detail">Starting price: '+item.price+'</div></div><div class="cart-item-actions"><span class="cart-item-price">'+item.price+'</span><div class="qty-control"><button class="qty-btn" onclick="updateQty('+item.id+', -1)">−</button><span class="qty-display">'+item.qty+'</span><button class="qty-btn" onclick="updateQty('+item.id+', 1)">+</button></div><button class="remove-btn" onclick="removeFromCart('+item.id+')">✕ Remove</button></div></div>').join('');
+    wrap.innerHTML = '<div class="cart-container"><div class="cart-items-wrap">'+itemsHTML+'</div><div class="cart-summary"><h3>Order Summary</h3><div class="summary-line"><span>Items ('+cart.length+')</span><span>Starting from $'+subtotal.toFixed(2)+'</span></div><div class="summary-line"><span>Delivery</span><span>To be confirmed</span></div><div class="summary-line"><span>VAT (15%)</span><span>To be confirmed</span></div><div class="summary-total"><span>Estimated Total</span><span style="color:var(--accent-orange);">$'+subtotal.toFixed(2)+'+</span></div><button class="btn" style="width:100%; margin-top:1.5rem;" onclick="checkoutCart()">Request Formal Quote →</button><button class="btn btn-outline" style="width:100%; margin-top:0.8rem;" onclick="showPage(\'services\')">Continue Shopping</button><button class="btn btn-danger btn-sm" style="width:100%; margin-top:0.8rem;" onclick="clearCart()">🗑 Clear Cart</button></div></div>';
+}
+
+function clearCart() { if(confirm('Clear your cart?')){cart=[];saveCart();renderCart();showToast('Cart cleared.','error');} }
+function checkoutCart() {
+    const names = cart.map(i=>i.name).join(', ');
+    showPage('quote');
+    setTimeout(function(){ document.getElementById('q-desc').value = 'I\'d like a quote for: ' + names; showToast('Cart items added to quote form!','success'); }, 400);
+}
+
+// ============================================================
+// RENDER SERVICES
+// ============================================================
+function renderServices(filter) {
+    filter = filter || '';
+    const grid = document.getElementById('services-grid');
+    if (!grid) return;
+    const filtered = services.filter(function(s) {
+        return s.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1 || s.desc.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+    });
+    if (filtered.length === 0) {
+        grid.innerHTML = '<p style="color:var(--text-muted); text-align:center; padding:3rem; grid-column:1/-1;">No services match your search.</p>';
+        return;
+    }
+    grid.innerHTML = filtered.map(function(s) {
+        var tagHTML = s.tag ? ' <span class="service-tag">' + s.tag + '</span>' : '';
+        return '<div class="service-card" onclick="openServiceModal(' + s.id + ')"><span class="service-icon">' + s.icon + '</span><h3>' + s.name + tagHTML + '</h3><p>' + s.desc + '</p><span class="price-tag">' + s.price + ' <small>/ unit</small></span><div style="display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap;"><button class="btn btn-sm" onclick="event.stopPropagation(); addToCart(' + s.id + ')">🛒 Add to Cart</button><button class="btn btn-sm btn-outline" onclick="event.stopPropagation(); showPage(\'quote\')">Get Quote</button></div></div>';
+    }).join('');
+}
+
+function filterServices(val) { renderServices(val); }
+
+function openServiceModal(id) {
+    var s = services.find(function(x){return x.id===id;});
+    if (!s) return;
+    document.getElementById('modal-title').textContent = s.name;
+    document.getElementById('modal-body').innerHTML = '<div style="text-align:center; font-size:4rem; margin-bottom:1.5rem;">'+s.icon+'</div><p style="color:var(--text-muted); margin-bottom:1.5rem; line-height:1.8;">'+s.desc+'</p><p style="font-size:1.4rem; font-weight:900; color:var(--accent-orange); margin-bottom:1.5rem;">'+s.price+' / unit</p><p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:2rem;">Final pricing depends on size, quantity, materials, and complexity. Request a free quote for an accurate estimate.</p><div style="display:flex; gap:1rem; flex-wrap:wrap;"><button class="btn" onclick="addToCart('+s.id+'); closeModal()">🛒 Add to Cart</button><button class="btn btn-outline" onclick="closeModal(); showPage(\'quote\')">Get Custom Quote</button></div>';
+    openModal();
+}
+
+// ============================================================
+// RENDER GALLERY
+// ============================================================
+var galleryCategories = ['All'];
+galleryItems.forEach(function(item) {
+    if (galleryCategories.indexOf(item.category) === -1) galleryCategories.push(item.category);
+});
+
+function renderGalleryFilters() {
+    var wrap = document.getElementById('gallery-filters');
+    if (!wrap) return;
+    wrap.innerHTML = galleryCategories.map(function(cat, i) {
+        return '<button class="filter-btn' + (i === 0 ? ' active' : '') + '" onclick="filterGallery(\'' + cat + '\', this)">' + cat + '</button>';
+    }).join('');
+}
+
+function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    renderGalleryGrid(cat);
+}
+
+function renderGalleryGrid(cat) {
+    cat = cat || 'All';
+    var grid = document.getElementById('gallery-grid');
+    if (!grid) return;
+    var filtered = cat === 'All' ? galleryItems : galleryItems.filter(function(i){return i.category===cat;});
+    grid.innerHTML = filtered.map(function(item) {
+        return '<div class="gallery-item" onclick="openGalleryModal('+item.id+')"><div class="gallery-thumb">'+item.icon+'</div><div class="gallery-info"><h4>'+item.name+'</h4><p>'+item.category+'</p><span class="gallery-tag">'+item.tag+'</span></div></div>';
+    }).join('');
+}
+
+function openGalleryModal(id) {
+    var item = galleryItems.find(function(x){return x.id===id;});
+    if (!item) return;
+    document.getElementById('modal-title').textContent = item.name;
+    document.getElementById('modal-body').innerHTML = '<div style="text-align:center; font-size:6rem; padding:2rem; background:linear-gradient(135deg,#1a2332,#0d1117); border-radius:8px; margin-bottom:1.5rem;">'+item.icon+'</div><h3 style="margin-bottom:0.5rem;">'+item.name+'</h3><span class="gallery-tag" style="margin-bottom:1rem; display:inline-block;">'+item.tag+'</span><p style="color:var(--text-muted); margin-bottom:1.5rem;">Category: '+item.category+'</p><p style="color:var(--text-muted); margin-bottom:2rem; line-height:1.8;">This is a sample project from our portfolio. Each project is custom designed and fabricated to suit our client\'s specific requirements and brand identity.</p><button class="btn" onclick="closeModal(); showPage(\'quote\')">Request Similar Work →</button>';
+    openModal();
+}
+
+// ============================================================
+// RENDER SHOWCASE
+// ============================================================
+function renderShowcase() {
+    var wrap = document.getElementById('showcase-gallery');
+    if (!wrap) return;
+    wrap.innerHTML = showcaseItems.map(function(item) {
+        return '<div class="showcase-card"><div class="showcase-img-wrap">'+item.icon+'</div><div class="showcase-overlay"><span class="showcase-badge">'+item.badge+'</span><h3>'+item.title+'</h3><p>'+item.desc+'</p></div></div>';
+    }).join('');
+}
+
+// ============================================================
+// RENDER REVIEWS
+// ============================================================
+function renderReviews(containerId, items) {
+    var wrap = document.getElementById(containerId);
+    if (!wrap) return;
+    wrap.innerHTML = items.map(function(r) {
+        var starsStr = '';
+        for (var i = 0; i < r.stars; i++) starsStr += '★';
+        for (var j = r.stars; j < 5; j++) starsStr += '☆';
+        return '<div class="review-card"><div class="review-stars">' + starsStr + '</div><p class="review-text">"' + r.text + '"</p><div class="review-author"><div class="review-avatar">' + r.avatar + '</div><div><div class="review-name">' + r.name + '</div><div class="review-role">' + r.role + '</div></div></div></div>';
+    }).join('');
+}
+
+// ============================================================
+// RENDER EDITORIAL
+// ============================================================
+function renderEditorial() {
+    var wrap = document.getElementById('editorial-cards');
+    if (!wrap) return;
+    wrap.innerHTML = editorials.map(function(e, i) {
+        return '<div class="editorial-card"><span style="font-size:0.75rem; color:var(--accent-orange); font-weight:700; text-transform:uppercase; letter-spacing:1px;">'+e.tag+'</span><h3 style="margin-top:0.5rem;">'+e.title+'</h3><p>'+e.excerpt+'</p><button class="read-more" onclick="openArticleModal('+i+')">Read More →</button></div>';
+    }).join('');
+}
+
+function openArticleModal(i) {
+    var e = editorials[i];
+    document.getElementById('modal-title').textContent = e.title;
+    document.getElementById('modal-body').innerHTML = '<span style="font-size:0.75rem; color:var(--accent-orange); font-weight:700; text-transform:uppercase; letter-spacing:1px;">'+e.tag+'</span><h3 style="margin:1rem 0; font-size:1.3rem;">'+e.title+'</h3><p style="color:var(--text-muted); line-height:1.9;">'+e.content+'</p><button class="btn" style="margin-top:2rem;" onclick="closeModal(); showPage(\'quote\')">Get a Quote Today →</button>';
+    openModal();
+}
+
+// ============================================================
+// STATS COUNTER ANIMATION
+// ============================================================
+var statsData = [
+    { id: 'stat-1', target: 500, suffix: '+' },
+    { id: 'stat-2', target: 8, suffix: '' },
+    { id: 'stat-3', target: 350, suffix: '+' },
+    { id: 'stat-4', target: 15, suffix: '' },
+];
+
+var statsAnimated = false;
+
+function animateStats() {
+    if (statsAnimated) return;
+    statsAnimated = true;
+
+    statsData.forEach(function(stat) {
+        var el = document.getElementById(stat.id);
+        if (!el) return;
+
+        var current = 0;
+        var target = stat.target;
+        var duration = 2000; // 2 seconds
+        var steps = 60;
+        var stepTime = duration / steps;
+        var increment = target / steps;
+
+        var timer = setInterval(function() {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            el.textContent = Math.round(current) + stat.suffix;
+        }, stepTime);
+    });
+}
+
+// ============================================================
+// FORMS
+// ============================================================
+function submitQuote(e) {
+    e.preventDefault();
+    var name = document.getElementById('q-name');
+    var email = document.getElementById('q-email');
+    var service = document.getElementById('q-service');
+    var desc = document.getElementById('q-desc');
+    var terms = document.getElementById('q-terms');
+
+    var showErr = function(id, show) { document.getElementById(id).classList.toggle('show', show); };
+
+    var nameValid = name.value.trim().length > 0;
+    var emailValid = email.value.indexOf('@') !== -1 && email.value.indexOf('.') !== -1;
+    var serviceValid = service.value !== '';
+    var descValid = desc.value.trim().length > 0;
+    var termsValid = terms.checked;
+
+    showErr('err-name', !nameValid);
+    showErr('err-email', !emailValid);
+    showErr('err-service', !serviceValid);
+    showErr('err-desc', !descValid);
+    showErr('err-terms', !termsValid);
+
+    if (!nameValid || !emailValid || !serviceValid || !descValid || !termsValid) return;
+
+    document.getElementById('quote-form').reset();
+    showToast('🎉 Quote request submitted! We\'ll contact you within 24 hours.', 'success');
+}
+
+function submitContact(e) {
+    e.preventDefault();
+    var name = document.getElementById('c-name');
+    var email = document.getElementById('c-email');
+    var subject = document.getElementById('c-subject');
+    var msg = document.getElementById('c-msg');
+
+    var showErr = function(id, show) { document.getElementById(id).classList.toggle('show', show); };
+
+    var nameValid = name.value.trim().length > 0;
+    var emailValid = email.value.indexOf('@') !== -1 && email.value.indexOf('.') !== -1;
+    var subValid = subject.value.trim().length > 0;
+    var msgValid = msg.value.trim().length > 0;
+
+    showErr('cerr-name', !nameValid);
+    showErr('cerr-email', !emailValid);
+    showErr('cerr-subject', !subValid);
+    showErr('cerr-msg', !msgValid);
+
+    if (!nameValid || !emailValid || !subValid || !msgValid) return;
+
+    document.getElementById('contact-form').reset();
+    showToast('✉️ Message sent! We\'ll be in touch soon.', 'success');
+}
+
+// ============================================================
+// ORDER TRACKING
+// ============================================================
+function trackOrder() {
+    var ref = document.getElementById('track-input').value.trim().toUpperCase();
+    var result = document.getElementById('track-result');
+
+    if (!ref) { showToast('Please enter an order reference number.', 'error'); return; }
+
+    var order = orders[ref];
+    if (!order) {
+        result.innerHTML = '<div style="background:var(--bg-card); border:1px solid var(--accent-red); border-radius:12px; padding:2.5rem; text-align:center;"><div style="font-size:3rem; margin-bottom:1rem;">❌</div><h3 style="margin-bottom:0.5rem;">Order Not Found</h3><p style="color:var(--text-muted);">No order found for reference <strong>'+ref+'</strong>. Please check the number and try again.</p><button class="btn btn-outline" style="margin-top:1.5rem;" onclick="showPage(\'contact\')">Contact Us</button></div>';
+        return;
     }
 
-    function updateCartBadge() {
-        const total = cart.reduce((s, i) => s + i.qty, 0);
-        document.getElementById('cart-count').textContent = total;
+    var stepsHTML = order.steps.map(function(step) {
+        var cls = step.done ? 'done' : (step.current ? 'current' : '');
+        return '<div class="step '+cls+'"><div class="step-title">'+step.title+'</div><div class="step-desc">'+step.desc+'</div><div class="step-time">'+step.time+'</div></div>';
+    }).join('');
+
+    result.innerHTML = '<div class="order-status-card"><div class="order-header"><div><div class="order-id">Reference: '+ref+'</div><div class="order-name">'+order.name+'</div><div style="color:var(--text-muted); font-size:0.9rem; margin-top:0.3rem;">Client: '+order.client+'</div></div><span class="status-badge '+order.status+'">'+order.statusLabel+'</span></div><h4 style="margin-bottom:1.5rem; font-size:1rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Order Progress</h4><div class="progress-steps">'+stepsHTML+'</div><div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border-color); display:flex; gap:1rem; flex-wrap:wrap;"><button class="btn btn-sm btn-outline" onclick="showPage(\'contact\')">📞 Contact Us</button><button class="btn btn-sm" onclick="showPage(\'quote\')">Place New Order</button></div></div>';
+    showToast('Order '+ref+' found! ✅', 'success');
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showPage(pageId) {
+    // Hide all pages
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active-page'); });
+    // Remove active from nav links
+    document.querySelectorAll('nav a').forEach(function(a){ a.classList.remove('active'); });
+
+    // Show requested page
+    var page = document.getElementById('page-' + pageId);
+    if (page) page.classList.add('active-page');
+
+    // Set active nav link
+    var link = document.querySelector('nav a[data-page="' + pageId + '"]');
+    if (link) link.classList.add('active');
+
+    // Close mobile menu
+    document.getElementById('nav-list').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Page-specific renders
+    if (pageId === 'cart') renderCart();
+    if (pageId === 'services') {
+        document.getElementById('service-search').value = '';
+        renderServices('');
+    }
+    if (pageId === 'gallery') { renderGalleryFilters(); renderGalleryGrid(); }
+    if (pageId === 'about') {
+        renderReviews('about-reviews-grid', reviews);
     }
 
-    function addToCart(serviceId) {
-        const service = services.find(s => s.id === serviceId);
-        if (!service) return;
-        const existing = cart.find(i => i.id === serviceId);
-        if (existing) {
-            existing.qty++;
-        } else {
-            cart.push({ id: service.id, icon: service.icon, name: service.name, price: service.price, qty: 1 });
-        }
-        saveCart();
-        showToast(`${service.name} added to cart! 🛒`, 'success');
+    // Re-run stats animation on home
+    if (pageId === 'home') {
+        statsAnimated = false;
+        animateStats();
     }
+}
 
-    function removeFromCart(id) {
-        cart = cart.filter(i => i.id !== id);
-        saveCart();
-        renderCart();
-        showToast('Item removed from cart.', 'error');
-    }
+// ============================================================
+// MODAL
+// ============================================================
+function openModal() { document.getElementById('modal-overlay').classList.add('open'); }
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
 
-    function updateQty(id, delta) {
-        const item = cart.find(i => i.id === id);
-        if (!item) return;
-        item.qty = Math.max(1, item.qty + delta);
-        saveCart();
-        renderCart();
-    }
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
 
-    function renderCart() {
-        const wrap = document.getElementById('cart-content');
-        if (!wrap) return;
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+});
 
-        if (cart.length === 0) {
-            wrap.innerHTML = `
-                <div class="cart-empty">
-                    <div class="empty-icon">🛒</div>
-                    <h3 style="margin-bottom:1rem;">Your cart is empty</h3>
-                    <p style="margin-bottom:2rem;">Browse our services and add items to get a quote.</p>
-                    <button class="btn" onclick="showPage('services')">Browse Services</button>
-                </div>`;
-            return;
-        }
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(msg, type) {
+    type = type || 'info';
+    var container = document.getElementById('toast-container');
+    var toast = document.createElement('div');
+    toast.className = 'toast ' + type;
+    toast.textContent = msg;
+    container.appendChild(toast);
+    setTimeout(function(){ if(toast.parentNode) toast.remove(); }, 3100);
+}
 
-        const subtotal = cart.reduce((s, i) => {
-            const price = parseFloat(i.price.replace(/[^0-9.]/g, '')) || 0;
-            return s + price * i.qty;
-        }, 0);
+// ============================================================
+// THEME TOGGLE
+// ============================================================
+var themeToggle = document.getElementById('themeToggle');
+var savedTheme = localStorage.getItem('ris_theme');
+if (savedTheme === 'light') { document.body.classList.add('light'); themeToggle.textContent = '☀️'; }
 
-        const itemsHTML = cart.map(item => `
-            <div class="cart-item">
-                <div class="cart-item-icon">${item.icon}</div>
-                <div>
-                    <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-detail">Starting price: ${item.price}</div>
-                </div>
-                <div class="cart-item-actions">
-                    <span class="cart-item-price">${item.price}</span>
-                    <div class="qty-control">
-                        <button class="qty-btn" onclick="updateQty(${item.id}, -1)">−</button>
-                        <span class="qty-display">${item.qty}</span>
-                        <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
-                    </div>
-                    <button class="remove-btn" onclick="removeFromCart(${item.id})">✕ Remove</button>
-                </div>
-            </div>`).join('');
+themeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('light');
+    var isLight = document.body.classList.contains('light');
+    themeToggle.textContent = isLight ? '☀️' : '🌙';
+    localStorage.setItem('ris_theme', isLight ? 'light' : 'dark');
+});
 
-        wrap.innerHTML = `
-            <div class="cart-container">
-                <div class="cart-items-wrap">${itemsHTML}</div>
-                <div class="cart-summary">
-                    <h3>Order Summary</h3>
-                    <div class="summary-line"><span>Items (${cart.length})</span><span>Starting from $${subtotal.toFixed(2)}</span></div>
-                    <div class="summary-line"><span>Delivery</span><span>To be confirmed</span></div>
-                    <div class="summary-line"><span>VAT (15%)</span><span>To be confirmed</span></div>
-                    <div class="summary-total">
-                        <span>Estimated Total</span>
-                        <span style="color:var(--accent-orange);">$${subtotal.toFixed(2)}+</span>
-                    </div>
-                    <button class="btn" style="width:100%; margin-top:1.5rem;" onclick="checkoutCart()">Request Formal Quote →</button>
-                    <button class="btn btn-outline" style="width:100%; margin-top:0.8rem;" onclick="showPage('services')">Continue Shopping</button>
-                    <button class="btn btn-danger btn-sm" style="width:100%; margin-top:0.8rem;" onclick="clearCart()">🗑 Clear Cart</button>
-                </div>
-            </div>`;
-    }
+// ============================================================
+// HAMBURGER
+// ============================================================
+document.getElementById('hamburger').addEventListener('click', function() {
+    this.classList.toggle('open');
+    document.getElementById('nav-list').classList.toggle('open');
+});
 
-    function clearCart() {
-        if (confirm('Are you sure you want to clear your cart?')) {
-            cart = [];
-            saveCart();
-            renderCart();
-            showToast('Cart cleared.', 'error');
-        }
-    }
+// ============================================================
+// SCROLL TO TOP
+// ============================================================
+var scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', function() {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+});
+scrollTopBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-    function checkoutCart() {
-        const services = cart.map(i => i.name).join(', ');
-        showPage('quote');
-        setTimeout(() => {
-            document.getElementById('q-desc').value = `I'd like a quote for: ${services}`;
-            showToast('Cart items added to quote form!', 'success');
-        }, 400);
-    }
-
-    // ============================================================
-    // RENDER SERVICES
-    // ============================================================
-    function renderServices(filter = '') {
-        const grid = document.getElementById('services-grid');
-        if (!grid) return;
-        const filtered = services.filter(s =>
-            s.name.toLowerCase().includes(filter.toLowerCase()) ||
-            s.desc.toLowerCase().includes(filter.toLowerCase())
-        );
-
-        if (filtered.length === 0) {
-            grid.innerHTML = '<p style="color:var(--text-muted); text-align:center; padding:3rem; grid-column:1/-1;">No services match your search.</p>';
-            return;
-        }
-
-        grid.innerHTML = filtered.map(s => `
-            <div class="service-card" onclick="openServiceModal(${s.id})">
-                <span class="service-icon">${s.icon}</span>
-                
+// ============================================================
+// INITIAL RENDER
+// ============================================================
+renderShowcase();
+renderReviews('reviews-grid', reviews.slice(0, 3));    // Show 3 on home
+renderReviews('about-reviews-grid', reviews);            // Show all on about
+renderEditorial();
+renderServices('');
+renderGalleryFilters();
+renderGalleryGrid();
+updateCartBadge();
+animateStats();
+</script>
+</body>
+</html>
