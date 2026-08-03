@@ -1,6 +1,3 @@
-I'll expand this into a full-featured application with authentication, real-time features, database simulation, and more. Here's the complete 2000+ line application:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +21,486 @@ I'll expand this into a full-featured application with authentication, real-time
             overflow: hidden;
         }
 
+        /* ─── LANDING PAGE ─── */
+        .landing-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0b0d15;
+            z-index: 2000;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .landing-page::-webkit-scrollbar {
+            width: 6px;
+        }
+        .landing-page::-webkit-scrollbar-thumb {
+            background: #2a2f3a;
+            border-radius: 8px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: radial-gradient(ellipse at center, #141822 0%, #0b0d15 70%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 107, 107, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(254, 202, 87, 0.05) 0%, transparent 50%);
+            animation: heroGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-logo {
+            font-size: 72px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+            margin-bottom: 16px;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-tagline {
+            font-size: 20px;
+            color: #8892a0;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-tagline span {
+            color: #feca57;
+            font-weight: 600;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-cta button {
+            padding: 16px 40px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-join {
+            background: #ff6b6b;
+            color: white;
+            box-shadow: 0 8px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-join:hover {
+            background: #e55a5a;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-explore {
+            background: transparent;
+            border: 2px solid #2a2f3a;
+            color: #f0f2f5;
+        }
+
+        .btn-explore:hover {
+            border-color: #feca57;
+            color: #feca57;
+            transform: translateY(-3px);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            background: #0f121a;
+            border-top: 1px solid #1e2430;
+            border-bottom: 1px solid #1e2430;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6b7a8f;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #6b7a8f;
+            margin-bottom: 60px;
+            font-size: 16px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: #141822;
+            border: 1px solid #1e2430;
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            border-color: #2f3542;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+            transform: scaleX(0);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #8892a0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 20px;
+            background: #0f121a;
+            border-top: 1px solid #1e2430;
+            border-bottom: 1px solid #1e2430;
+        }
+
+        .steps-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #141822;
+            border: 2px solid #2a2f3a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            color: #feca57;
+        }
+
+        .step-card h3 {
+            margin-bottom: 12px;
+        }
+
+        .step-card p {
+            color: #8892a0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: #141822;
+            border: 1px solid #1e2430;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .testimonial-card .quote {
+            font-size: 60px;
+            color: #ff6b6b;
+            line-height: 1;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .testimonial-card p {
+            color: #8892a0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-author .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #feca57;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #0b0d15;
+        }
+
+        .testimonial-author .name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .testimonial-author .role {
+            font-size: 12px;
+            color: #6b7a8f;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 80px 20px;
+            background: #0f121a;
+            border-top: 1px solid #1e2430;
+            border-bottom: 1px solid #1e2430;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #141822;
+            border: 1px solid #1e2430;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .faq-question:hover {
+            background: #1e2430;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: #8892a0;
+            font-size: 14px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-arrow {
+            transition: 0.3s;
+            color: #feca57;
+        }
+
+        /* Footer */
+        .landing-footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #1e2430;
+            color: #6b7a8f;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .landing-footer a {
+            color: #feca57;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+
+        .landing-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Floating Preview */
+        .floating-preview {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #141822;
+            border: 1px solid #2a2f3a;
+            border-radius: 20px;
+            padding: 20px;
+            z-index: 2001;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            max-width: 350px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-preview .preview-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #6b7a8f;
+        }
+
+        .floating-preview .preview-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-preview .preview-content {
+            font-size: 13px;
+            color: #aab;
+            margin-bottom: 12px;
+        }
+
+        .floating-preview .preview-btn {
+            width: 100%;
+            padding: 10px;
+            background: #ff6b6b;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
         /* ─── AUTH OVERLAY ─── */
         .auth-overlay {
             position: fixed;
@@ -35,8 +512,13 @@ I'll expand this into a full-featured application with authentication, real-time
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
+            z-index: 3000;
             backdrop-filter: blur(8px);
+            display: none;
+        }
+
+        .auth-overlay.active {
+            display: flex;
         }
 
         .auth-modal {
@@ -47,6 +529,23 @@ I'll expand this into a full-featured application with authentication, real-time
             width: 400px;
             max-width: 90vw;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .auth-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: #6b7a8f;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .auth-close:hover {
+            color: #f0f2f5;
         }
 
         .auth-modal h2 {
@@ -85,7 +584,7 @@ I'll expand this into a full-featured application with authentication, real-time
             cursor: pointer;
         }
 
-        .auth-modal button {
+        .auth-modal button[type="submit"] {
             width: 100%;
             padding: 14px;
             background: #ff6b6b;
@@ -99,7 +598,7 @@ I'll expand this into a full-featured application with authentication, real-time
             margin-top: 8px;
         }
 
-        .auth-modal button:hover {
+        .auth-modal button[type="submit"]:hover {
             background: #e55a5a;
             transform: translateY(-1px);
         }
@@ -126,6 +625,11 @@ I'll expand this into a full-featured application with authentication, real-time
             align-items: center;
             border-bottom: 1px solid #2a2f3a;
             flex-shrink: 0;
+            display: none;
+        }
+
+        .app-visible .top-bar {
+            display: flex;
         }
 
         .logo {
@@ -232,7 +736,7 @@ I'll expand this into a full-featured application with authentication, real-time
 
         /* ─── ROOM NAV ─── */
         .room-nav {
-            display: flex;
+            display: none;
             gap: 8px;
             padding: 12px 24px;
             background: #0f121a;
@@ -240,6 +744,10 @@ I'll expand this into a full-featured application with authentication, real-time
             flex-shrink: 0;
             overflow-x: auto;
             align-items: center;
+        }
+
+        .app-visible .room-nav {
+            display: flex;
         }
 
         .room-nav::-webkit-scrollbar {
@@ -307,9 +815,13 @@ I'll expand this into a full-featured application with authentication, real-time
 
         /* ─── MAIN CONTENT ─── */
         .main-container {
-            display: flex;
+            display: none;
             flex: 1;
             overflow: hidden;
+        }
+
+        .app-visible .main-container {
+            display: flex;
         }
 
         /* LEFT: THREAD FEED */
@@ -781,302 +1293,4 @@ I'll expand this into a full-featured application with authentication, real-time
             border-radius: 12px;
             color: #f0f2f5;
             z-index: 1001;
-            animation: slideIn 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 720px) {
-            .main-container {
-                flex-direction: column;
-            }
-            .side-area {
-                border-left: none;
-                border-top: 1px solid #1e2430;
-                max-height: 40vh;
-            }
-            .feed-area {
-                padding: 12px;
-            }
-            .top-bar {
-                padding: 8px 12px;
-            }
-            .room-nav {
-                padding: 8px 12px;
-                gap: 4px;
-            }
-            .room-btn {
-                padding: 6px 14px;
-                font-size: 12px;
-            }
-        }
-
-        .typing-indicator {
-            display: flex;
-            gap: 4px;
-            padding: 8px;
-            align-items: center;
-            color: #6b7a8f;
-            font-size: 12px;
-        }
-
-        .typing-dot {
-            width: 6px;
-            height: 6px;
-            background: #6b7a8f;
-            border-radius: 50%;
-            animation: bounce 1.4s infinite;
-        }
-
-        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes bounce {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-4px); }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- AUTH OVERLAY -->
-    <div class="auth-overlay" id="authOverlay">
-        <div class="auth-modal" id="authModal">
-            <h2 id="authTitle">Welcome to StreetChat</h2>
-            <p id="authSubtitle">Speak. See. Connect.</p>
-            <form id="authForm">
-                <input type="text" id="authName" placeholder="Full Name" required />
-                <input type="email" id="authEmail" placeholder="Email" required />
-                <input type="password" id="authPassword" placeholder="Password" required minlength="6" />
-                <select id="authRole" required>
-                    <option value="">Select your vibe</option>
-                    <option value="business">💼 Business</option>
-                    <option value="love">❤️ Love-seeker</option>
-                    <option value="conversator">💬 Conversator</option>
-                </select>
-                <select id="authCountry" required>
-                    <option value="">Select country</option>
-                    <option value="USA">🇺🇸 United States</option>
-                    <option value="UK">🇬🇧 United Kingdom</option>
-                    <option value="SA">🇿🇦 South Africa</option>
-                    <option value="VN">🇻🇳 Vietnam</option>
-                    <option value="IN">🇮🇳 India</option>
-                    <option value="NG">🇳🇬 Nigeria</option>
-                    <option value="BR">🇧🇷 Brazil</option>
-                    <option value="DE">🇩🇪 Germany</option>
-                    <option value="JP">🇯🇵 Japan</option>
-                    <option value="AU">🇦🇺 Australia</option>
-                </select>
-                <input type="text" id="authState" placeholder="State/Province (optional)" />
-                <button type="submit" id="authSubmitBtn">Get Started</button>
-            </form>
-            <div class="auth-toggle" id="authToggle">
-                Already have an account? <span>Log In</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- NOTIFICATION MODAL -->
-    <div class="modal-overlay" id="notificationModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('notificationModal')">&times;</button>
-            <h3>🔔 Notifications</h3>
-            <div id="notificationList" style="margin-top: 12px;">
-                <div style="color: #6b7a8f; padding: 12px;">No new notifications</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PROFILE MODAL -->
-    <div class="modal-overlay" id="profileModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('profileModal')">&times;</button>
-            <h3>👤 Profile Settings</h3>
-            <div style="margin-top: 12px;">
-                <label style="color: #6b7a8f; font-size: 12px;">Display Name</label>
-                <input type="text" id="profileName" style="width:100%; padding:10px; background:#0f121a; border:1px solid #2a2f3a; border-radius:8px; color:#f0f2f5; margin-bottom:12px;" />
-                <label style="color: #6b7a8f; font-size: 12px;">Status</label>
-                <input type="text" id="profileStatus" placeholder="What's on your mind?" style="width:100%; padding:10px; background:#0f121a; border:1px solid #2a2f3a; border-radius:8px; color:#f0f2f5; margin-bottom:12px;" />
-                <button onclick="saveProfile()" style="width:100%; padding:12px; background:#ff6b6b; border:none; border-radius:8px; color:white; font-weight:600; cursor:pointer;">Save Changes</button>
-                <button onclick="logout()" style="width:100%; padding:12px; background:#2a2f3a; border:none; border-radius:8px; color:#f0f2f5; font-weight:600; cursor:pointer; margin-top:8px;">🚪 Log Out</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- CREATE ROOM MODAL -->
-    <div class="modal-overlay" id="createRoomModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('createRoomModal')">&times;</button>
-            <h3>✨ Create Room</h3>
-            <input type="text" id="newRoomName" placeholder="Room name" style="width:100%; padding:10px; background:#0f121a; border:1px solid #2a2f3a; border-radius:8px; color:#f0f2f5; margin-bottom:12px;" />
-            <select id="newRoomCategory" style="width:100%; padding:10px; background:#0f121a; border:1px solid #2a2f3a; border-radius:8px; color:#f0f2f5; margin-bottom:12px;">
-                <option value="business">💼 Business</option>
-                <option value="love">❤️ Love</option>
-                <option value="social">💬 Social</option>
-            </select>
-            <button onclick="createRoom()" style="width:100%; padding:12px; background:#ff6b6b; border:none; border-radius:8px; color:white; font-weight:600; cursor:pointer;">Create Room</button>
-        </div>
-    </div>
-
-    <!-- TOP BAR -->
-    <div class="top-bar">
-        <div class="logo" onclick="location.reload()">
-            <span class="online-indicator"></span> StreetChat
-        </div>
-        <div class="top-actions">
-            <button class="notification-btn" onclick="openModal('notificationModal')">
-                🔔 <span class="notification-badge" id="notifBadge" style="display:none;">0</span>
-            </button>
-            <div class="profile-badge" onclick="openModal('profileModal')">
-                <span class="tag" id="userTag">💼 Business</span>
-                <span class="avatar" id="userAvatar">U</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ROOM NAV -->
-    <div class="room-nav" id="roomNav">
-        <button class="room-btn active" data-room="business">📊 Business <span class="room-count">3</span></button>
-        <button class="room-btn" data-room="love">❤️ Love <span class="room-count">5</span></button>
-        <button class="room-btn" data-room="main">💬 Chat <span class="room-count">2</span></button>
-        <button class="room-btn" data-room="tech">🤖 Tech <span class="room-count">1</span></button>
-        <button class="room-btn" data-room="music">🎵 Music <span class="room-count">4</span></button>
-        <button class="create-room-btn" onclick="openModal('createRoomModal')">+ New Room</button>
-    </div>
-
-    <!-- MAIN -->
-    <div class="main-container">
-
-        <!-- FEED -->
-        <div class="feed-area" id="feedArea">
-            <!-- Posts will be injected here -->
-        </div>
-
-        <!-- SIDE -->
-        <div class="side-area">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" placeholder="Search users..." id="searchInput" oninput="filterUsers()" />
-            </div>
-
-            <h3 id="composeTitle">Post to Business</h3>
-
-            <div class="compose-box">
-                <label>📸 Image / Video (max 5min)</label>
-                <input type="file" accept="image/*,video/*" id="mediaInput" multiple />
-
-                <label>🎙️ Voice note</label>
-                <input type="file" accept="audio/*" id="voiceInput" />
-
-                <div class="post-actions">
-                    <button class="btn-primary" id="postBtn">📤 Post</button>
-                    <button class="btn-voice" id="voiceRecordBtn">🎤 Record</button>
-                </div>
-                <div style="margin-top:8px; font-size:12px; color:#6b7a8f;">
-                    * No text — only media & replies
-                </div>
-                <div id="voiceStatus" style="margin-top:4px; font-size:11px; color:#feca57; display:none;">
-                    🎙️ Recording... <span id="voiceTimer">00:00</span>
-                </div>
-            </div>
-
-            <h3 style="margin-top:4px;">🔒 Private Chats</h3>
-            <div class="private-list" id="privateList">
-                <!-- dynamically populated -->
-            </div>
-            <div class="typing-indicator" id="typingIndicator" style="display:none;">
-                <span>Someone is typing</span>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TOAST CONTAINER -->
-    <div id="toastContainer"></div>
-
-    <script>
-        // ─── GLOBAL STATE ─────────────────────────────────────
-        const APP = {
-            currentUser: null,
-            isAuthenticated: false,
-            isLoginMode: false,
-            currentRoom: 'business',
-            voiceRecording: false,
-            voiceTimerInterval: null,
-            voiceSeconds: 0,
-            notifications: [],
-            rooms: {
-                business: { name: 'Business', icon: '📊', createdBy: 'system' },
-                love: { name: 'Love', icon: '❤️', createdBy: 'system' },
-                main: { name: 'Chat', icon: '💬', createdBy: 'system' },
-                tech: { name: 'Tech', icon: '🤖', createdBy: 'system' },
-                music: { name: 'Music', icon: '🎵', createdBy: 'system' }
-            },
-            posts: {
-                business: [
-                    {
-                        id: 'b1',
-                        author: 'Elena',
-                        authorId: 'user_elena',
-                        tag: '💼 Business',
-                        country: 'USA',
-                        state: 'NY',
-                        timestamp: Date.now() - 3600000,
-                        pinned: true,
-                        reactions: { '👍': 12, '❤️': 5, '🔥': 3 },
-                        media: [
-                            { type: 'image', src: '📸 Event flyer', url: '' },
-                            { type: 'voice', src: '🎙️ 0:23 pitch intro', url: '' }
-                        ],
-                        replies: [
-                            {
-                                id: 'b1r1',
-                                author: 'James',
-                                authorId: 'user_james',
-                                tag: '💼 Business',
-                                country: 'SA',
-                                timestamp: Date.now() - 1800000,
-                                reactions: { '👍': 3 },
-                                media: [{ type: 'voice', src: '🎙️ 0:23 interested', url: '' }],
-                                replies: []
-                            },
-                            {
-                                id: 'b1r2',
-                                author: 'Priya',
-                                authorId: 'user_priya',
-                                tag: '💼 Business',
-                                country: 'IN',
-                                timestamp: Date.now() - 900000,
-                                reactions: {},
-                                media: [{ type: 'image', src: '📸 Business card', url: '' }],
-                                replies: []
-                            }
-                        ]
-                    },
-                    {
-                        id: 'b2',
-                        author: 'Minh',
-                        authorId: 'user_minh',
-                        tag: '💼 Business',
-                        country: 'VN',
-                        timestamp: Date.now() - 7200000,
-                        pinned: false,
-                        reactions: { '👍': 8, '🚀': 2 },
-                        media: [{ type: 'video', src: '🎥 2:14 product demo', url: '' }],
-                        replies: []
-                    },
-                    {
-                        id: 'b3',
-                        author: 'Sarah',
-                        authorId: 'user_sarah',
-                        tag: '💼 Business',
-                        country: 'UK',
-                        state: 'London',
-                        timestamp: Date.now
+            animation
