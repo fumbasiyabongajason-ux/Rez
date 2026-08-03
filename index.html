@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -87,6 +87,7 @@
             background: linear-gradient(135deg, #ff6b6b, #feca57, #ff6b6b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             animation: shimmer 3s ease-in-out infinite;
             margin-bottom: 16px;
         }
@@ -173,6 +174,7 @@
             background: linear-gradient(135deg, #ff6b6b, #feca57);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stat-label {
@@ -483,6 +485,11 @@
             animation: pulse 2s infinite;
         }
 
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
         .floating-preview .preview-content {
             font-size: 13px;
             color: #aab;
@@ -554,6 +561,7 @@
             background: linear-gradient(135deg, #ff6b6b, #feca57);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .auth-modal p {
@@ -625,11 +633,6 @@
             align-items: center;
             border-bottom: 1px solid #2a2f3a;
             flex-shrink: 0;
-            display: none;
-        }
-
-        .app-visible .top-bar {
-            display: flex;
         }
 
         .logo {
@@ -639,6 +642,7 @@
             background: linear-gradient(135deg, #ff6b6b, #feca57);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -652,11 +656,6 @@
             border-radius: 50%;
             display: inline-block;
             animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
         }
 
         .top-actions {
@@ -736,7 +735,7 @@
 
         /* ─── ROOM NAV ─── */
         .room-nav {
-            display: none;
+            display: flex;
             gap: 8px;
             padding: 12px 24px;
             background: #0f121a;
@@ -744,10 +743,6 @@
             flex-shrink: 0;
             overflow-x: auto;
             align-items: center;
-        }
-
-        .app-visible .room-nav {
-            display: flex;
         }
 
         .room-nav::-webkit-scrollbar {
@@ -815,13 +810,9 @@
 
         /* ─── MAIN CONTENT ─── */
         .main-container {
-            display: none;
+            display: flex;
             flex: 1;
             overflow: hidden;
-        }
-
-        .app-visible .main-container {
-            display: flex;
         }
 
         /* LEFT: THREAD FEED */
@@ -840,34 +831,6 @@
             border-radius: 8px;
         }
 
-        .feed-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .feed-header h2 {
-            font-size: 18px;
-            color: #aab;
-        }
-
-        .sort-btn {
-            background: transparent;
-            border: none;
-            color: #6b7a8f;
-            cursor: pointer;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            transition: 0.2s;
-        }
-
-        .sort-btn:hover {
-            background: #1e2430;
-            color: #f0f2f5;
-        }
-
         .post-card {
             background: #141822;
             border-radius: 16px;
@@ -875,16 +838,6 @@
             margin-bottom: 16px;
             border: 1px solid #1e2430;
             transition: 0.15s;
-            position: relative;
-        }
-
-        .post-card:hover {
-            border-color: #2f3542;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        .post-card.pinned {
-            border-left: 3px solid #feca57;
         }
 
         .post-card .post-header {
@@ -904,7 +857,6 @@
             justify-content: center;
             font-weight: 700;
             color: #0b0d15;
-            font-size: 16px;
         }
 
         .post-card .post-header .name {
@@ -918,17 +870,11 @@
             color: #aab;
         }
 
-        .post-card .post-header .timestamp {
-            font-size: 11px;
-            color: #6b7a8f;
-            margin-left: auto;
-        }
-
         .post-card .media-area {
             margin: 10px 0 12px 0;
             background: #0f121a;
             border-radius: 12px;
-            padding: 12px;
+            padding: 8px;
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
@@ -944,14 +890,6 @@
             color: #8892a0;
             padding: 8px 14px;
             gap: 6px;
-            cursor: pointer;
-            transition: 0.2s;
-            position: relative;
-        }
-
-        .media-item:hover {
-            background: #2a2f3a;
-            transform: scale(1.02);
         }
 
         .media-item img {
@@ -964,41 +902,21 @@
             font-size: 18px;
         }
 
-        .post-actions-bar {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .reply-btn, .react-btn, .share-btn {
+        .reply-btn {
             background: transparent;
             border: none;
             color: #6b7a8f;
             font-size: 13px;
             cursor: pointer;
-            padding: 6px 12px;
+            padding: 6px 0;
             display: flex;
             align-items: center;
             gap: 6px;
             transition: 0.2s;
-            border-radius: 8px;
-        }
-
-        .reply-btn:hover, .react-btn:hover, .share-btn:hover {
-            background: #1e2430;
-            color: #f0f2f5;
         }
 
         .reply-btn:hover {
             color: #feca57;
-        }
-
-        .react-btn:hover {
-            color: #ff6b6b;
-        }
-
-        .share-btn:hover {
-            color: #4ade80;
         }
 
         /* REPLY THREAD (indented) */
@@ -1014,40 +932,6 @@
             border-color: #1e2430;
         }
 
-        .reply-form {
-            margin-top: 12px;
-            padding: 12px;
-            background: #1e2430;
-            border-radius: 12px;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .reply-form input[type="file"] {
-            display: none;
-        }
-
-        .reply-form label {
-            cursor: pointer;
-            padding: 6px 12px;
-            background: #2a2f3a;
-            border-radius: 8px;
-            font-size: 12px;
-            color: #aab;
-        }
-
-        .reply-form button {
-            padding: 8px 16px;
-            background: #ff6b6b;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 12px;
-        }
-
         /* ─── RIGHT: COMPOSE / PRIVATE CHAT ─── */
         .side-area {
             flex: 1;
@@ -1057,24 +941,12 @@
             display: flex;
             flex-direction: column;
             min-width: 280px;
-            overflow-y: auto;
-        }
-
-        .side-area::-webkit-scrollbar {
-            width: 4px;
-        }
-        .side-area::-webkit-scrollbar-thumb {
-            background: #2a2f3a;
-            border-radius: 8px;
         }
 
         .side-area h3 {
             font-size: 16px;
             margin-bottom: 12px;
             color: #aab;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .compose-box {
@@ -1101,11 +973,6 @@
             color: #aab;
             font-size: 12px;
             cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .compose-box input[type="file"]:hover {
-            border-color: #feca57;
         }
 
         .compose-box .post-actions {
@@ -1145,36 +1012,6 @@
             background: #3a4150;
         }
 
-        .btn-voice.recording {
-            background: #ff6b6b;
-            animation: pulse 1s infinite;
-        }
-
-        /* SEARCH */
-        .search-box {
-            background: #141822;
-            border-radius: 12px;
-            padding: 8px 12px;
-            border: 1px solid #1e2430;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .search-box input {
-            background: transparent;
-            border: none;
-            color: #f0f2f5;
-            outline: none;
-            flex: 1;
-            font-size: 13px;
-        }
-
-        .search-box .search-icon {
-            color: #6b7a8f;
-        }
-
         /* PRIVATE CHAT LIST */
         .private-list {
             flex: 1;
@@ -1193,22 +1030,11 @@
             border: 1px solid #1e2430;
             cursor: pointer;
             transition: 0.15s;
-            position: relative;
         }
 
         .private-item:hover {
             background: #1e2430;
             border-color: #2f3542;
-        }
-
-        .private-item.online .online-dot {
-            width: 8px;
-            height: 8px;
-            background: #4ade80;
-            border-radius: 50%;
-            position: absolute;
-            top: 16px;
-            right: 16px;
         }
 
         .private-item .avatar {
@@ -1221,7 +1047,6 @@
             justify-content: center;
             font-weight: 700;
             color: #0b0d15;
-            font-size: 16px;
         }
 
         .private-item .info .name {
@@ -1232,65 +1057,133 @@
             color: #6b7a8f;
         }
 
-        .private-item .last-message {
-            font-size: 11px;
-            color: #4a5568;
-            margin-top: 2px;
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 720px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .side-area {
+                border-left: none;
+                border-top: 1px solid #1e2430;
+                max-height: 40vh;
+            }
+            .feed-area {
+                padding: 12px;
+            }
         }
+    </style>
+</head>
+<body>
 
-        /* ─── MODAL ─── */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-            display: none;
-        }
+    <!-- LANDING PAGE -->
+    <div class="landing-page" id="landingPage">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-logo">StreetChat</div>
+                <p class="hero-tagline">
+                    <span>Speak. See. Connect.</span><br>
+                    The media-first social platform where voice, video, and images<br>
+                    bring conversations to life. No text required.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn-join" onclick="showAuth('signup')">🚀 Join Now – It's Free</button>
+                    <button class="btn-explore" onclick="scrollToSection('features-section')">🔍 Explore Features</button>
+                </div>
+            </div>
+        </div>
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-item">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">120+</div>
+                <div class="stat-label">Countries</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1M+</div>
+                <div class="stat-label">Voice Notes Shared</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4.9★</div>
+                <div class="stat-label">User Rating</div>
+            </div>
+        </div>
 
-        .modal {
-            background: #141822;
-            padding: 24px;
-            border-radius: 20px;
-            border: 1px solid #2a2f3a;
-            width: 500px;
-            max-width: 90vw;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
+        <!-- Features Section -->
+        <div class="features-section" id="features-section">
+            <h2 class="section-title">Why StreetChat?</h2>
+            <p class="section-subtitle">A new way to connect through media, not text</p>
+            <div class="features-grid">
+                <div class="feature-card" onclick="showAuth('signup')">
+                    <div class="feature-icon">🎙️</div>
+                    <h3>Voice-First Communication</h3>
+                    <p>Record and share voice notes up to 5 minutes. Perfect for storytelling, pitches, or just saying hello with your real voice.</p>
+                </div>
+                <div class="feature-card" onclick="showAuth('signup')">
+                    <div class="feature-icon">📸</div>
+                    <h3>Visual Storytelling</h3>
+                    <p>Share images and videos that capture moments. No captions needed – let your media speak for itself.</p>
+                </div>
+                <div class="feature-card" onclick="showAuth('signup')">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Rooms</h3>
+                    <p>Join topic-based rooms like Business, Love, or Music. Connect with people worldwide who share your interests.</p>
+                </div>
+                <div class="feature-card" onclick="showAuth('signup')">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Private Conversations</h3>
+                    <p>Take conversations private with one-on-one messaging. Share voice notes, images, and videos securely.</p>
+                </div>
+                <div class="feature-card" onclick="showAuth('signup')">
+                    <div class="feature-icon">💬</div>
+                    <h3>Threaded Replies</h3>
+                    <p>Keep conversations organized with threaded replies. Respond directly to any post with your own media.</p>
+                </div>
+                <div class="feature-card" onclick="showAuth('signup')">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Beautiful & Simple</h3>
+                    <p>A stunning dark-mode interface designed for focus. No clutter, no distractions – just pure communication.</p>
+                </div>
+            </div>
+        </div>
 
-        .modal h3 {
-            margin-bottom: 16px;
-            color: #f0f2f5;
-        }
+        <!-- How It Works -->
+        <div class="how-it-works">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Get started in under a minute</p>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Create Your Profile</h3>
+                    <p>Sign up with your name, email, and choose your vibe – Business, Love-seeker, or Conversator.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Join a Room</h3>
+                    <p>Pick a room that matches your interest. Each room is a community of like-minded people.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Share Media</h3>
+                    <p>Record a voice note, upload an image, or share a video. No text needed – just your media.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Connect & Reply</h3>
+                    <p>Reply to posts with your own media. Build conversations thread by thread, voice by voice.</p>
+                </div>
+            </div>
+        </div>
 
-        .modal-close {
-            float: right;
-            background: none;
-            border: none;
-            color: #6b7a8f;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        /* ─── TOAST ─── */
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: #141822;
-            border: 1px solid #2a2f3a;
-            padding: 16px 24px;
-            border-radius: 12px;
-            color: #f0f2f5;
-            z-index: 1001;
-            animation
+        <!-- Testimonials -->
+        <div class="testimonials-section">
+            <h2 class="section-title">What Users Say</h2>
+            <p class="section-subtitle">Join thousands of happy StreetChatters</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote">"</div>
+                   
